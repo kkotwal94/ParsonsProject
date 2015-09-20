@@ -4,6 +4,8 @@ import UserActions from 'actions/UserActions';
 import UserStore from 'stores/UserStore';
 import Immutable from 'immutable';
 
+import 'scss/components/_login';
+
 export default class Login extends React.Component {
 
 

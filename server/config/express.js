@@ -22,7 +22,7 @@ module.exports = function (app, passport) {
 
   app.set('view cache', false);
 
-  app.use(bodyParser.json());
+  app.use(bodyParser.json({limit: '100mb'}));
   app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
   app.use(methodOverride());
   app.use(express.static(path.join(__dirname, '../..', 'public')));
@@ -67,7 +67,8 @@ module.exports = function (app, passport) {
     // Add HTTPOnly, Secure attributes on Session Cookie
     // If secure is set, and you access your site over HTTP, the cookie will not be set
     cookie: {
-      httpOnly: true
+      httpOnly: false,
+      secure: false
     },
     store: new MongoStore({ url: secrets.db, autoReconnect: true})
   };
@@ -75,7 +76,7 @@ module.exports = function (app, passport) {
   var node_env = process.env.NODE_ENV;
   console.log('Environment: ' + node_env);
   if(node_env === 'production') {
-    sess.cookie.secure = true; // Serve secure cookies
+    sess.cookie.secure = false; // Serve secure cookies
   }
 
   app.use(session(sess));
@@ -84,7 +85,7 @@ module.exports = function (app, passport) {
   app.use(passport.session());
 
   app.use(flash());
-  
+  /**
   var port = (node_env === 'production') ? app.get('port') : 3000;
 
   // We only run this workflow when not in Production && require a hot-loader
@@ -109,5 +110,5 @@ module.exports = function (app, passport) {
   proxy.on('error', function(e) {
     console.log('Could not connect to proxy, please try again...');
   });
-
+**/
 };

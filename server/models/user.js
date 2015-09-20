@@ -14,11 +14,12 @@ var crypto = require('crypto');
  */
 
 var UserSchema = new mongoose.Schema({
-  email: { type: String, unique: true, lowercase: true},
+  email: { type: String, unique: true},
   password: String,
   tokens: Array,
   profile: {
-    name: { type: String, default: ''},
+    firstName: { type: String, default: ''},
+    lastName: {type: String, default: ''},
     gender: { type: String, default: ''},
     location: { type: String, default: ''},
     website: { type: String, default: ''},
