@@ -1,12 +1,10 @@
 /**
  * Routes for express app
  */
-var topics = require('../controllers/topics');
 var express = require('express');
 var users = require('../controllers/users');
 var mongoose = require('mongoose');
 var _ = require('lodash');
-var Topic = mongoose.model('Topic');
 var Header = require('../../public/assets/header.server');
 var App = require('../../public/assets/app.server');
 
@@ -37,7 +35,7 @@ module.exports = function(app, passport) {
     }));
 
  
-
+   /*
   // Retrieves all topics on any endpoint for demonstration purposes
   // If you were indeed doing this in production, you should instead only
   // query the Topics on a page that has topics
@@ -62,7 +60,7 @@ module.exports = function(app, passport) {
       }
     });
   });
-
+   */
   // This is where the magic happens. We take the locals data we have already
   // fetched and seed our stores with data.
   // App is a function that requires store data and url to initialize and return the React-rendered html string

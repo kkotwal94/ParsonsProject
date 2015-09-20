@@ -1,6 +1,6 @@
 /**
  * Defining a User Model in mongoose
- * Code modified from https://github.com/sahat/hackathon-starter
+ * 
  */
 
 var bcrypt = require('bcrypt-nodejs');
@@ -22,11 +22,13 @@ var UserSchema = new mongoose.Schema({
     gender: { type: String, default: ''},
     location: { type: String, default: ''},
     website: { type: String, default: ''},
-    picture: { type: String, default: ''}
+    picture: { type: String, default: ''},
+    section: { type: String, default: ''}
   },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
-  google: {}
+  google: {},
+  isStaff : { type: Boolean, default: false}
 });
 
 
