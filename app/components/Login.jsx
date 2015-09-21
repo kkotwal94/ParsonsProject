@@ -4,7 +4,9 @@ import UserActions from 'actions/UserActions';
 import UserStore from 'stores/UserStore';
 import Immutable from 'immutable';
 
-import 'scss/components/_login';
+//import 'scss/components/_login';
+
+import 'scss/main';
 
 export default class Login extends React.Component {
 
@@ -69,7 +71,7 @@ export default class Login extends React.Component {
        <div>
   <div className="wrapper">
   <div className="container">
-    <h1>Welcome, If ya just signed up then go ahead and sign in</h1>
+    <h1 className="welcomelogin">Welcome, If ya just signed up then go ahead and sign in</h1>
     <fieldset className = "loginSet">
       <input type="text" className = "form-control" placeholder="Username" ref = "email" name = "email" />
       <input type="password" className = "form-control" placeholder="Password" ref = "password" name = "password" />
