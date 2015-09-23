@@ -18,7 +18,7 @@ function requireAuth(nextState, transition) {
 export default (
   <Route component={App}>
     <Route name ="login" path="/" component={Login} />
-    <Route name ="signup"path="/signup" component={Signup} />
+    <Route name ="signup"path="/register" component={Signup} />
     <Route name ="dashboard" path="/dashboard" component={Dashboard} onEnter={requireAuth} />
     <Route name ="about" path="/about" component={About} onEnter={requireAuth}/>
     <Route path="*" component={NotFound}/>

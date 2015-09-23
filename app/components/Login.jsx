@@ -4,9 +4,8 @@ import UserActions from 'actions/UserActions';
 import UserStore from 'stores/UserStore';
 import Immutable from 'immutable';
 
-//import 'scss/components/_login';
+import styles from 'scss/components/_login';
 
-import 'scss/main';
 
 export default class Login extends React.Component {
 
@@ -45,9 +44,9 @@ export default class Login extends React.Component {
   if (this.state.user.get('authenticated')) {
     renderedResult = (
        <div>
-  <div className="wrapper">
-  <div className="container">
-    <h1 className="login__header">LoggedIN!</h1>
+  <div className={styles['wrapper']}>
+  <div className={styles['container']}>
+    <h1 className={styles['login__header']}>LoggedIN!</h1>
     <Link to="/dashboard">Lets head to the dashboard </Link>
     <hr />
     </div>
@@ -58,9 +57,9 @@ export default class Login extends React.Component {
     if (this.state.user.get('isWaiting')) {
       renderedResult = (
        <div>
-  <div className="wrapper">
-  <div className="container">
-    <h1 className="login__header">Waiting..... Maybe you need to try again <a href="/">here</a></h1>
+  <div className={styles['wrapper']}>
+  <div className={styles['container']}>
+    <h1 className={styles['login__header']}>Waiting..... Maybe you need to try again <a href="/">here</a></h1>
     <hr />
     </div>
     </div>
@@ -69,17 +68,17 @@ export default class Login extends React.Component {
     } else {
       renderedResult = (
        <div>
-  <div className="wrapper">
-  <div className="container">
-    <h1 className="welcomelogin">Welcome, If ya just signed up then go ahead and sign in</h1>
-    <fieldset className = "loginSet">
-      <input type="text" className = "form-control" placeholder="Username" ref = "email" name = "email" />
-      <input type="password" className = "form-control" placeholder="Password" ref = "password" name = "password" />
-      <button type="submit" id="login-button" to = "dashboard" onClick={this._onLoginSubmit}>Login</button>
+  <div className={styles['wrapper']}>
+  <div className={styles['container']}>
+    <h1 className={styles['welcomelogin']}>Welcome, If ya just signed up then go ahead and sign in</h1>
+    <fieldset className = {styles['loginSet']}>
+      <input type="text" className = {styles['form-control']} placeholder="Username" ref = "email" name = "email" />
+      <input type="password" className = {styles['form-control']} placeholder="Password" ref = "password" name = "password" />
+      <button type="submit" className={styles['login-button']} to = "dashboard" onClick={this._onLoginSubmit}>Login</button>
     </fieldset>
     <hr/>
 
-<p>Need an account? <Link to="signup">Signup</Link></p>
+<p>Need an account? <Link to="register">Signup</Link></p>
 
   </div>
 </div>

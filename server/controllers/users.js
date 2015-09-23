@@ -21,30 +21,6 @@ exports.postLogin = function(req, res, next) {
   })(req, res, next);
 };
 
-exports.postSignUp = function(req, res, next) {
-  var user =  new User({
-    email: req.body.email,
-    password: req.body.password,
-  });
-  user.profile.firstName = req.body.firstName;
-  user.profile.lastName = req.body.lastName;
-  user.profile.section = req.body.section;
-  console.log(req.body);
-  User.findOne({email: req.body.email}, function(err, existingUser) {
-    if(existingUser) {
-      req.flash('errors', { msg: 'Account with that email address already exists' });
-      
-    }
-    user.save(function(err) {
-      if(err) return next(err);
-      req.logIn(user, function(err) {
-        if(err) return next(err);
-        console.log('Successfully created');
-        res.redirect('/');
-      });
-    });
-  });
-};
 
 /**
  * GET /logout
@@ -52,6 +28,7 @@ exports.postSignUp = function(req, res, next) {
 exports.getLogout = function(req, res, next) {
   // Do email and password validation for the server
   req.logout();
+  res.redirect('/');
   next();
 };
 
@@ -62,19 +39,31 @@ exports.getLogout = function(req, res, next) {
 exports.postSignUp = function(req, res, next) {
   var user =  new User({
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    profile: {
+      firstName : req.body.firstName,
+      lastName : req.body.lastName,
+      section : req.body.section
+    }
   });
-
+  //user.profile.firstName = req.body.firstName;
+  //user.profile.lastName = req.body.lastName;
+  //user.profile.section = req.body.section;
   User.findOne({email: req.body.email}, function(err, existingUser) {
     if(existingUser) {
       req.flash('errors', { msg: 'Account with that email address already exists' });
+      res.redirect('/sign');
     }
     user.save(function(err) {
       if(err) return next(err);
       req.logIn(user, function(err) {
         if(err) return next(err);
         console.log('Successfully created');
-        res.end('Success');
+        console.log('Printing user');
+        console.log(user);
+        console.log('Print our body from our request');
+        console.log(req.body);
+        res.redirect('/');
       });
     });
   });
