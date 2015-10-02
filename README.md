@@ -1,7 +1,7 @@
 # ParsonsProject
 A web app that allows students to practice Parson's problems
 
-#How To set up
+#How To set ups
 
 First install nodejs,mongodb, and then clone this repo with git.
 
