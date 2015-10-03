@@ -3,6 +3,9 @@
  */
 var express = require('express');
 var users = require('../controllers/users');
+var feedback = require("../controllers/feedbackapi");
+var problem = require("../controllers/problemapi");
+var pair = require("../controllers/userproblempairapi");
 var mongoose = require('mongoose');
 var _ = require('lodash');
 var Header = require('../../public/assets/header.server');

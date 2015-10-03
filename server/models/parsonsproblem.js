@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 // Other oauthtypes to be added
 
 /*
- User Schema
+ Problem Schema
  */
 
 var ParsonsProblemSchema = new mongoose.Schema({

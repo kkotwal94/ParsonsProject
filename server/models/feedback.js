@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 // Other oauthtypes to be added
 
 /*
- User Schema
+ Feedback Schema
  */
 
 var FeedbackSchema = new mongoose.Schema({

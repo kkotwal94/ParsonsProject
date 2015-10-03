@@ -1,12 +1,12 @@
 /**
- * Defining a Feedback Model in mongoose
+ * Defining a UserProblem Relationship Model in mongoose
  * 
  */
 var mongoose = require('mongoose');
 // Other oauthtypes to be added
 
 /*
- User Schema
+ UserProblem Pair Schema
  */
 
 var UserProblemPairSchema = new mongoose.Schema({
