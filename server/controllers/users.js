@@ -1,12 +1,28 @@
 var _ = require('lodash');
 var User = require('../models/user');
 var passport = require('passport');
+var ParsonsProblem = require('../models/parsonsproblem');
+var Feedback = require('../models/feedback');
+var UserProblemPair = require('../models/userproblempair');
 
 /**
  * POST /login
  */
 exports.postLogin = function(req, res, next) {
   // Do email and password validation for the server
+  var Feed = new Feedback({
+    description: 'Supsuop'
+  });
+  var Problem = new ParsonsProblem({
+    description: 'Test',
+    feedback: Feed
+  });
+  var Pair = new UserProblemPair({
+    problem_id: Problem,
+    attempt_quantity: 0,
+    completed: true
+  });
+
   passport.authenticate('local', function(err, user, info) {
     if(err) return next(err);
     if(!user) {
@@ -18,7 +34,12 @@ exports.postLogin = function(req, res, next) {
       req.flash('success', { msg: 'Success! You are logged in'});
       res.end('Success');
     });
+
   })(req, res, next);
+  Feed.save(function(err) {console.log('Feedback saved');});
+  Problem.save(function(err) {console.log('Problem saved');});
+  Pair.save(function(err) {console.log('ProblemPair saved');});
+  console.log(Feed);
 };
 
 
