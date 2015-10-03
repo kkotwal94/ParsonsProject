@@ -31,3 +31,35 @@ Set up the mongoose Models for our MongoDB (Feedback, ParsonsProblem, UserProble
 * <code>db.userproblempairs.find({})</code> for User Problem Pair
 
 Test worked fine, ids were cool for objects, just double check our schema for these models incase we missed anything, models are under /models, controllers under /controllers, the test is written in controllers/users.js, and in the login api.
+
+#TODO
+
+Api to write for ParsonsProblem
+* GET ParsonsProblem (indiviual Parsons Problem by id)
+* Get All ParsonsProblem
+* POST Create ParsonsProblem
+* POST Delete ParsonsProblem
+* POST Update ParsonsProblem
+
+Api for feedback
+* GET Feedback (indiviual Feedback data)
+* GET All Our Feedback (for admin)
+* POST Create Feedback
+* POST Delete Feedback
+* POST Update Feedback
+* POST AssignFeedback (To a parsons problem)
+
+Api for User
+* GET Problems completed
+* GET Most Problem failed
+* GET firstName, LastName, section, course, birthday etc
+* POST Update firstName, LastName, section, course, birthday etc
+* POST Delete User (Admin only)
+
+Api for UserProblemRelationship (not sure yet)
+* GET Attempts taken for a certain problem
+* GET User taking the problem
+* GET the actual Problem ID from this problem
+* GET Date of the problem
+* GET and update UserInfo (should do on own since object ref)
+* GET and update Problem Model (should do on own since object ref)
