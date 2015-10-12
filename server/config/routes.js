@@ -13,9 +13,17 @@ var App = require('../../public/assets/app.server');
 
 module.exports = function(app, passport) {
   // user routes
-  app.post('/login', users.postLogin);
+  app.post('/login', users.postLogin);  
   app.post('/signup', users.postSignUp);
   app.get('/logout', users.getLogout);
+  
+  app.post('/updateUserProfile', function(req, res) {
+    users.updateUserProfile(req, res);
+  });
+  
+  app.get('/getAllUsers', function(req, res) {
+    users.getAllUsers(req, res);
+  });
 
   // google auth
   // Redirect the user to Google for authentication. When complete, Google
@@ -46,7 +54,9 @@ module.exports = function(app, passport) {
     
        
         // We don't want to be seeding and generating markup with user information
-        var user = req.user ? { authenticated: true, isWaiting: false } : { authenticated: false, isWaiting: false };
+        console.log("Before we change: " + req.user);
+        var user = req.user ? {authenticated: true, isWaiting: false, email: req.user.email, id: req.user._id} : { authenticated: false, isWaiting: false };
+        console.log("After the change: " + req.user);
         // An object that contains response local variables scoped to the request, and therefore available only to the view(s) rendered during
         // that request/response cycle (if any). Otherwise, this property is identical to app.locals
         // This property is useful for exposing request-level information such as request path name, authenticated user, user settings, and so on.
@@ -55,9 +65,8 @@ module.exports = function(app, passport) {
           UserStore: { user: user }
         };
         next();
-    
   });
-   
+  
   // This is where the magic happens. We take the locals data we have already
   // fetched and seed our stores with data.
   // App is a function that requires store data and url to initialize and return the React-rendered html string

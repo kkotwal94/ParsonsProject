@@ -9,8 +9,9 @@ var UserProblemPair = require('../models/userproblempair');
  * POST /login
  */
 exports.postLogin = function(req, res, next) {
+
   // Do email and password validation for the server
-  var Feed = new Feedback({
+  /*var Feed = new Feedback({
     description: 'Supsuop'
   });
   var Problem = new ParsonsProblem({
@@ -22,7 +23,8 @@ exports.postLogin = function(req, res, next) {
     attempt_quantity: 0,
     completed: true
   });
-
+  */
+  console.log(req.body);
   passport.authenticate('local', function(err, user, info) {
     if(err) return next(err);
     if(!user) {
@@ -32,25 +34,69 @@ exports.postLogin = function(req, res, next) {
     req.logIn(user, function(err) {
       if(err) return next(err);
       req.flash('success', { msg: 'Success! You are logged in'});
+      res.redirect('/dashboard');
       res.end('Success');
+      console.log("Request User: " + req.user);
     });
 
   })(req, res, next);
+  /*
   Feed.save(function(err) {console.log('Feedback saved');});
   Problem.save(function(err) {console.log('Problem saved');});
   Pair.save(function(err) {console.log('ProblemPair saved');});
   console.log(Feed);
+  */
 };
 
+/**
+ * POST UpdateUser Profile
+ */
+exports.updateUserProfile = function(req, res) {
+      console.log("Request User: " + require);
+      var id = req.user._id;
+      if (req.body.firstName == "") {
+        req.body.firstName = req.user.profile.firstName;
+      }
+      if (req.body.lastName == "") {
+        req.body.lastName = req.user.profile.lastName;
+      }
+      if (req.body.gender == "") {
+        req.body.gender = req.user.profile.gender;
+      }
+      if (req.body.section == "") {
+        req.body.section = req.user.profile.section;
+      }
+
+      User.findById(id, function(err, user) {
+        console.log("ID: " + id);
+        user.profile.firstName = req.body.firstName;
+        user.profile.lastName = req.body.lastName;
+        user.profile.gender = req.body.gender;
+        user.profile.section = req.body.section;
+        user.save();
+        res.end();
+      });
+};
+
+/**
+ * GET /logout
+ */
+exports.getAllUsers = function(req, res) {
+  User.find({}, function (err, users) {
+            //console.log(users);
+            res.json(users);
+        });
+}
 
 /**
  * GET /logout
  */
 exports.getLogout = function(req, res, next) {
   // Do email and password validation for the server
+  console.log("User has been logged out");
   req.logout();
   res.redirect('/');
-  next();
+  //res.end():
 };
 
 /**
@@ -89,3 +135,4 @@ exports.postSignUp = function(req, res, next) {
     });
   });
 };
+
