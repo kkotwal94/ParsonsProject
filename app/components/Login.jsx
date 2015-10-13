@@ -32,7 +32,6 @@ export default class Login extends React.Component {
   _onLoginSubmit = () => {
     let email = React.findDOMNode(this.refs.email).value;
     const password = React.findDOMNode(this.refs.password).value;
-    email = email.toLowerCase();
     UserActions.manuallogin({
       email: email,
       password: password
@@ -47,7 +46,7 @@ export default class Login extends React.Component {
   <div className={styles['wrapper']}>
   <div className={styles['container']}>
     <h1 className={styles['login__header']}>LoggedIN!</h1>
-    <Link to="/dashboard">Lets head to the dashboard </Link>
+    <a href="/dashboard">Lets head to the dashboard </a>
     <hr />
     </div>
     </div>

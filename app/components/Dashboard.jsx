@@ -30,6 +30,8 @@ export default class Dashboard extends React.Component {
 
   render() {
   	console.log(this.state.user);
+    console.log(this.state.user.get('email'));
+    console.log(this.state.user.get('id'));
     return (
       <div>Welcome to the Dashboard</div>
     );

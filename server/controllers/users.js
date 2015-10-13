@@ -26,7 +26,10 @@ exports.postLogin = function(req, res, next) {
     attempt_quantity: 0,
     completed: true
   });
+<<<<<<< HEAD
 */
+
+  //console.log(req.body);
 
   passport.authenticate('local', function(err, user, info) {
     if(err) return next(err);
@@ -36,31 +39,87 @@ exports.postLogin = function(req, res, next) {
     }
     // Passport exposes a login() function on req (also aliased as logIn()) that can be used to establish a login session
     req.logIn(user, function(err) {
-      console.log("User: " +user + " has been logged in");  
+      //console.log("User: " +user + " has been logged in");  
       if(err) return next(err);
       req.session.user = req.user;
-      console.log("Request session user:" + req.session.user);
-      req.flash('success', { msg: 'Success! You are logged in'});
-      res.end('Success');
-    });
+      var user = req.user ? {authenticated: true, isWaiting: false, email: req.user.email, id: req.user._id} : { authenticated: false, isWaiting: false };
 
+      //console.log("Request session user:" + req.session.user);
+      req.flash('success', { msg: 'Success! You are logged in'});
+      res.redirect('/dashboard');
+      //res.end('Success');
+      console.log("Request User: " + req.user);
+      res.locals.data =  {
+          UserStore: { user: user }
+        };
+      res.redirect('/dashboard');
+    });
   })(req, res, next);
   //Feed.save(function(err) {console.log('Feedback saved');});
   //Problem.save(function(err) {console.log('Problem saved');});
   //Pair.save(function(err) {console.log('ProblemPair saved');});
   //console.log(Feed);
 
+  /*
+  Feed.save(function(err) {console.log('Feedback saved');});
+  Problem.save(function(err) {console.log('Problem saved');});
+  Pair.save(function(err) {console.log('ProblemPair saved');});
+  console.log(Feed);
+  */
 };
 
+/**
+ * POST UpdateUser Profile
+ */
+exports.updateUserProfile = function(req, res) {
+      console.log("Request User: " + require);
+      var id = req.user._id;
+      if (req.body.firstName == "") {
+        req.body.firstName = req.user.profile.firstName;
+      }
+      if (req.body.lastName == "") {
+        req.body.lastName = req.user.profile.lastName;
+      }
+      if (req.body.gender == "") {
+        req.body.gender = req.user.profile.gender;
+      }
+      if (req.body.section == "") {
+        req.body.section = req.user.profile.section;
+      }
+
+      User.findById(id, function(err, user) {
+        console.log("ID: " + id);
+        user.profile.firstName = req.body.firstName;
+        user.profile.lastName = req.body.lastName;
+        user.profile.gender = req.body.gender;
+        user.profile.section = req.body.section;
+        user.save();
+        res.end();
+      });
+};
+
+/**
+ * GET /logout
+ */
+exports.getAllUsers = function(req, res) {
+  console.log("TESTTTTTT");
+  console.log(res.locals.data);
+  User.find({}, function (err, users) {
+            //console.log(users);
+            res.json(users);
+        });
+}
 
 /**
  * GET /logout
  */
 exports.getLogout = function(req, res, next) {
   // Do email and password validation for the server
-  console.log("You have been logged out");
+  console.log("User has been logged out");
   req.logout();
   res.redirect('/');
+  //res.end():
+
 };
 
 /**
@@ -80,7 +139,7 @@ exports.postSignUp = function(req, res, next) {
   User.findOne({email: req.body.email}, function(err, existingUser) {
     if(existingUser) {
       req.flash('errors', { msg: 'Account with that email address already exists' });
-      res.redirect('/sign');
+      res.redirect('/register');
     }
     user.save(function(err) {
       if(err) return next(err);
@@ -89,40 +148,15 @@ exports.postSignUp = function(req, res, next) {
         console.log('Successfully created');
         console.log('Printing user');
         console.log(user);
-        console.log('Print our body from our request');
-        console.log(req.body);
+        //console.log('Print our body from our request');
+        //console.log(req.body);
         req.session.user = req.user;
-        console.log("Request session user:" + req.session.user); 
+        //console.log("Request session user:" + req.user); 
         res.redirect('/');
-        res.end();
+        //res.end();
       });
     });
   });
 };
 
-/**
- *Update Profile
- */
- /*
- exports.updateProfile = function(req, res) {
-  var user = req.user; //Grabs current user logged in
-  console.log(req.user);
-  var id = req.user._id;
-  //setting variables for all the data sent from a front-ended form
-  newfirstName = req.body.firstName;
-  newLastName = req.body.lastName;
-  newGender = req.body.gender;
-  newLocation = req.body.locations;
-  newSection = req.body.section;
 
-  User.findbyId(id, function(err, userFound) {
-    userFound.profile.firstName = newFirstName;
-    userFound.profile.lastName = newLastName;
-    userFound.profile.gender = newGender;
-    userFound.profile.locations = newLocation;
-    userFound.profile.section = newSection;
-    userFound.save();
-  });
-  res.end();
-};
-*/

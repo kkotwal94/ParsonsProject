@@ -1,6 +1,10 @@
 # ParsonsProject
 A web app that allows students to practice Parson's problems
 
+#CurrentBugs:
+* User names work, however they cannot find or query for usernames with '=, #, &' since they interfere with post method stuff
+* Finally, req.user, cannot be establish or mantained after logging in with passportjs even though it should be. 
+
 #How To set ups
 
 First install nodejs,mongodb, and then clone this repo with git.

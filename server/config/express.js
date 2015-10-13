@@ -67,8 +67,9 @@ module.exports = function (app, passport) {
     // Add HTTPOnly, Secure attributes on Session Cookie
     // If secure is set, and you access your site over HTTP, the cookie will not be set
     cookie: {
+      expires: false,
       httpOnly: false,
-      secure: false
+      //secure: false
     },
     store: new MongoStore({ url: secrets.db, autoReconnect: true})
   };
