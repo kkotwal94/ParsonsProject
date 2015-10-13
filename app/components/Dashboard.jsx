@@ -4,7 +4,8 @@ import UserActions from 'actions/UserActions';
 import UserStore from 'stores/UserStore';
 import Immutable from 'immutable';
 
-import 'scss/components/_admin';
+import styles from 'scss/components/_admin';
+import 'scss/main'
 
 export default class Dashboard extends React.Component {
 
@@ -37,8 +38,8 @@ export default class Dashboard extends React.Component {
       <div>
      <body>
 
-    <div id="wrapper">
-
+    <div className={styles['wrapper']}>
+      <p className = "helloworld">Hello test</p>
         
         <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
            
@@ -53,6 +54,7 @@ export default class Dashboard extends React.Component {
             </div>
            
             <ul className="nav navbar-right top-nav">
+             <div className = {styles['top-nav']}>
                 <li className="dropdown">
                     <a href="#" className="dropdown-toggle" data-toggle="dropdown"><i className="fa fa-envelope"></i> <b className="caret"></b></a>
                     <ul className="dropdown-menu message-dropdown">
@@ -104,7 +106,9 @@ export default class Dashboard extends React.Component {
                         <li className="message-footer">
                             <a href="#">Read All New Messages</a>
                         </li>
+                    
                     </ul>
+
                 </li>
                 <li className="dropdown">
                     <a href="#" className="dropdown-toggle" data-toggle="dropdown"><i className="fa fa-bell"></i> <b className="caret"></b></a>
@@ -151,9 +155,11 @@ export default class Dashboard extends React.Component {
                         </li>
                     </ul>
                 </li>
+                </div>
             </ul>
-            
+             
             <div className="collapse navbar-collapse navbar-ex1-collapse">
+              <div className={styles['side-nav']}>
                 <ul className="nav navbar-nav side-nav">
                     <li className="active">
                         <a href="index.html"><i className="fa fa-fw fa-dashboard"></i> Dashboard</a>
@@ -191,11 +197,12 @@ export default class Dashboard extends React.Component {
                         <a href="index-rtl.html"><i className="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
                     </li>
                 </ul>
+              </div>
             </div>
             
         </nav>
 
-        <div id="page-wrapper">
+        <div className={styles['page-wrapper']}>
 
             <div className="container-fluid">
 
