@@ -29,7 +29,7 @@ render() {
 	<div className={styles['wrapper2']}>
 	<div className={styles['container']}>
 		<h1>Welcome</h1>
-		<form action = "/signup" method = "post">
+		<form className={styles['signupForm']} action = "/signup" method = "post">
 			<input type="text" className = {styles['form-control']} placeholder="Username" name = "email"/>
 			<input type="password" className = {styles['form-control']} placeholder="Password" name = "password"/>
       <input type="text" className = {styles['form-control']} placeholder="First Name" name = "firstName"/>

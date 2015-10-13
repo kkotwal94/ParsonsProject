@@ -89,12 +89,12 @@ body :-ms-input-placeholder {
   font-weight: 200;
   text-align: center;
 }
-form {
+.signupForm {
   padding: 20px 0;
   position: relative;
   z-index: 2;
 }
-form input {
+.signupForm input {
   appearance: none;
   outline: 0;
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -120,13 +120,13 @@ form input:focus {
   color: #e74c3c;
 }
 
-fieldset {
+.loginSet {
   padding: 20px 0;
   position: relative;
   z-index: 2;
   border: 0px;
 }
-fieldset input {
+.loginSet input {
   appearance: none;
   outline: 0;
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -143,10 +143,10 @@ fieldset input {
           transition-duration: 0.25s;
   font-weight: 300;
 }
-fieldset input:hover {
+.loginSet input:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
-fieldset input:focus {
+.loginSet input:focus {
   background-color: white;
   width: 300px;
   color: #e74c3c;
@@ -192,16 +192,16 @@ a.login-button:hover {
 .login-button2:hover {
   background-color: #f5f7f9;
 }
-fieldset button:hover {
+.loginSet button:hover {
   background-color: #f5f7f9;
   color: black;
 }
-fieldset button:focus {
+.loginSet button:focus {
   
   width: 300px;
   
 }
-fieldset button {
+.loginSet button {
   appearance: none;
   outline: 0;
   background-color: rgba(255, 255, 255, 0.2);
@@ -222,16 +222,16 @@ fieldset button {
 }
 
 
-form button:hover {
+.signupForm button:hover {
   background-color: #f5f7f9;
   color: black;
 }
-form button:focus {
+.signupForm button:focus {
   
   width: 300px;
   
 }
-form button {
+.signupForm button {
   appearance: none;
   outline: 0;
   background-color: rgba(255, 255, 255, 0.2);

@@ -23,6 +23,9 @@ const config = {
     // Add to homescreen for Safari on IOS 
     { "rel": "apple-touch-icon", "sizes": "152x152", applecon },
     { "rel": "stylesheet", "href": "https://fonts.googleapis.com/css?family=Roboto+Condensed", "type": "text/css" },
+    { "rel": "stylesheet", "href": "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css", "type": "text/css"},
+    
+    { "rel": "stylesheet", "href": "https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css", "type": "text/css"},
     { "rel": "stylesheet", "href": "/assets/styles/main.css" }
     // SEO: If your mobile URL is different from the desktop URL, 
     // add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones
