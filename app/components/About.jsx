@@ -18,7 +18,7 @@ export default class About extends React.Component {
     </fieldset>
     <hr/>
 
-<p>Need an account? <Link to="register">Signup</Link></p>
+<p>Dash? <Link to="dashboard">Dashboard</Link></p>
 
   </div>
 </div>

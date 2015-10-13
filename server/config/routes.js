@@ -57,7 +57,7 @@ module.exports = function(app, passport) {
        
         // We don't want to be seeding and generating markup with user information
         console.log("Before we change: " + req.user);
-        var user = req.user ? {authenticated: true, isWaiting: false, email: req.user.email, id: req.user._id} : { authenticated: false, isWaiting: false };
+        var user = req.user ? {authenticated: true, isWaiting: false, email: req.user.email, id: req.user._id, profile: req.user.profile} : { authenticated: false, isWaiting: false };
         console.log("After the change: " + req.user);
         // An object that contains response local variables scoped to the request, and therefore available only to the view(s) rendered during
         // that request/response cycle (if any). Otherwise, this property is identical to app.locals

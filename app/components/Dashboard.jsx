@@ -34,9 +34,12 @@ export default class Dashboard extends React.Component {
   	console.log(this.state.user);
     console.log(this.state.user.get('email'));
     console.log(this.state.user.get('id'));
+    console.log(this.state.user.get('profile').get('firstName'));
+    let firstName = this.state.user.get('profile').get('firstName');
+    let lastName = this.state.user.get('profile').get('lastName');
     return (
       <div>
-     <body>
+     
 
     <div className={styles['wrapper']}>
       <p className = "helloworld">Hello test</p>
@@ -50,13 +53,13 @@ export default class Dashboard extends React.Component {
                     <span className="icon-bar"></span>
                     <span className="icon-bar"></span>
                 </button>
-                <a className="navbar-brand" href="index.html">SB Admin</a>
+                <a className="navbar-brand" href="index.html">Parsons Problems</a>
             </div>
            
             <ul className="nav navbar-right top-nav">
              <div className = {styles['top-nav']}>
                 <li className="dropdown">
-                    <a href="#" className="dropdown-toggle" data-toggle="dropdown"><i className="fa fa-envelope"></i> <b className="caret"></b></a>
+                    <a href="#" className={styles['top-nava']}data-toggle="dropdown"><i className="fa fa-envelope"></i> <b className="caret"></b></a>
                     <ul className="dropdown-menu message-dropdown">
                         <li className="message-preview">
                             <a href="#">
@@ -65,7 +68,7 @@ export default class Dashboard extends React.Component {
                                         
                                     </span>
                                     <div className="media-body">
-                                        <h5 className="media-heading"><strong>John Smith</strong>
+                                        <h5 className="media-heading"><strong>{firstName + " " + lastName}</strong>
                                         </h5>
                                         <p className="small text-muted"><i className="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -80,7 +83,7 @@ export default class Dashboard extends React.Component {
                                        
                                     </span>
                                     <div className="media-body">
-                                        <h5 className="media-heading"><strong>John Smith</strong>
+                                        <h5 className="media-heading"><strong>{firstName + " " + lastName}</strong>
                                         </h5>
                                         <p className="small text-muted"><i className="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -95,7 +98,7 @@ export default class Dashboard extends React.Component {
                                         
                                     </span>
                                     <div className="media-body">
-                                        <h5 className="media-heading"><strong>John Smith</strong>
+                                        <h5 className="media-heading"><strong>{firstName + " " + lastName}</strong>
                                         </h5>
                                         <p className="small text-muted"><i className="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -111,7 +114,7 @@ export default class Dashboard extends React.Component {
 
                 </li>
                 <li className="dropdown">
-                    <a href="#" className="dropdown-toggle" data-toggle="dropdown"><i className="fa fa-bell"></i> <b className="caret"></b></a>
+                    <a href="#" className={styles['top-nava']} data-toggle="dropdown"><i className="fa fa-bell"></i> <b className="caret"></b></a>
                     <ul className="dropdown-menu alert-dropdown">
                         <li>
                             <a href="#">Alert Name <span className="label label-default">Alert Badge</span></a>
@@ -138,7 +141,7 @@ export default class Dashboard extends React.Component {
                     </ul>
                 </li>
                 <li className="dropdown">
-                    <a href="#" className="dropdown-toggle" data-toggle="dropdown"><i className="fa fa-user"></i> John Smith <b className="caret"></b></a>
+                    <a href="#" className={styles['top-nava']} data-toggle="dropdown"><i className="fa fa-user"></i>{firstName + " " + lastName} <b className="caret"></b></a>
                     <ul className="dropdown-menu">
                         <li>
                             <a href="#"><i className="fa fa-fw fa-user"></i> Profile</a>
@@ -162,39 +165,39 @@ export default class Dashboard extends React.Component {
               <div className={styles['side-nav']}>
                 <ul className="nav navbar-nav side-nav">
                     <li className="active">
-                        <a href="index.html"><i className="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a className={styles['items']} href="index.html"><i className="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="charts.html"><i className="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                        <a className={styles['items']} href="charts.html"><i className="fa fa-fw fa-bar-chart-o"></i> Profile</a>
                     </li>
                     <li>
-                        <a href="tables.html"><i className="fa fa-fw fa-table"></i> Tables</a>
+                        <a className={styles['items']} href="tables.html"><i className="fa fa-fw fa-table"></i> Random Problems!</a>
                     </li>
                     <li>
-                        <a href="forms.html"><i className="fa fa-fw fa-edit"></i> Forms</a>
+                        <a className={styles['items']} href="forms.html"><i className="fa fa-fw fa-edit"></i> Assignments</a>
                     </li>
                     <li>
-                        <a href="bootstrap-elements.html"><i className="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
+                        <a className={styles['items']} href="bootstrap-elements.html"><i className="fa fa-fw fa-desktop"></i> Sakai</a>
                     </li>
                     <li>
-                        <a href="bootstrap-grid.html"><i className="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
+                        <a className={styles['items']} href="bootstrap-grid.html"><i className="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i className="fa fa-fw fa-arrows-v"></i> Dropdown <i className="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo" className={styles['items']}><i className="fa fa-fw fa-arrows-v"></i> Dropdown <i className="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" className="collapse">
                             <li>
-                                <a href="#">Dropdown Item</a>
+                                <a className={styles['dropdownstuff']} href="#">Dropdown Item</a>
                             </li>
                             <li>
-                                <a href="#">Dropdown Item</a>
+                                <a className={styles['dropdownstuff']} href="#">Dropdown Item</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="blank-page.html"><i className="fa fa-fw fa-file"></i> Blank Page</a>
+                        <Link to="about" className={styles['items']} href="blank-page.html"><i className="fa fa-fw fa-file"></i> About</Link>
                     </li>
                     <li>
-                        <a href="index-rtl.html"><i className="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+                        <a className={styles['items']} href="index-rtl.html"><i className="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
                     </li>
                 </ul>
               </div>
@@ -203,11 +206,8 @@ export default class Dashboard extends React.Component {
         </nav>
 
         <div className={styles['page-wrapper']}>
-
-            <div className="container-fluid">
-
-                
-                <div className="row">
+          <div className ="container-fluid">
+            <div className="row">
                     <div className="col-lg-12">
                         <h1 className="page-header">
                             Dashboard <small>Statistics Overview</small>
@@ -216,269 +216,21 @@ export default class Dashboard extends React.Component {
                             <li className="active">
                                 <i className="fa fa-dashboard"></i> Dashboard
                             </li>
+                            <li>
+                            
+                            <Link to="about">About</Link>
+                            </li>
                         </ol>
                     </div>
                 </div>
-                
-
-                <div className="row">
-                    <div className="col-lg-12">
-                        <div className="alert alert-info alert-dismissable">
-                            <button type="button" className="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <i className="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" className="alert-link">SB Admin 2</a> for additional features!
-                        </div>
-                    </div>
-                </div>
-                
-                <div className="row">
-                    <div className="col-lg-3 col-md-6">
-                        <div className="panel panel-primary">
-                            <div className="panel-heading">
-                                <div className="row">
-                                    <div className="col-xs-3">
-                                        <i className="fa fa-comments fa-5x"></i>
-                                    </div>
-                                    <div className="col-xs-9 text-right">
-                                        <div className="huge">26</div>
-                                        <div>New Comments!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div className="panel-footer">
-                                    <span className="pull-left">View Details</span>
-                                    <span className="pull-right"><i className="fa fa-arrow-circle-right"></i></span>
-                                    <div className="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-6">
-                        <div className="panel panel-green">
-                            <div className="panel-heading">
-                                <div className="row">
-                                    <div className="col-xs-3">
-                                        <i className="fa fa-tasks fa-5x"></i>
-                                    </div>
-                                    <div className="col-xs-9 text-right">
-                                        <div className="huge">12</div>
-                                        <div>New Tasks!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div className="panel-footer">
-                                    <span className="pull-left">View Details</span>
-                                    <span className="pull-right"><i className="fa fa-arrow-circle-right"></i></span>
-                                    <div className="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-6">
-                        <div className="panel panel-yellow">
-                            <div className="panel-heading">
-                                <div className="row">
-                                    <div className="col-xs-3">
-                                        <i className="fa fa-shopping-cart fa-5x"></i>
-                                    </div>
-                                    <div className="col-xs-9 text-right">
-                                        <div className="huge">124</div>
-                                        <div>New Orders!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div className="panel-footer">
-                                    <span className="pull-left">View Details</span>
-                                    <span className="pull-right"><i className="fa fa-arrow-circle-right"></i></span>
-                                    <div className="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-6">
-                        <div className="panel panel-red">
-                            <div className="panel-heading">
-                                <div className="row">
-                                    <div className="col-xs-3">
-                                        <i className="fa fa-support fa-5x"></i>
-                                    </div>
-                                    <div className="col-xs-9 text-right">
-                                        <div className="huge">13</div>
-                                        <div>Support Tickets!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div className="panel-footer">
-                                    <span className="pull-left">View Details</span>
-                                    <span className="pull-right"><i className="fa fa-arrow-circle-right"></i></span>
-                                    <div className="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-
-                <div className="row">
-                    <div className="col-lg-12">
-                        <div className="panel panel-default">
-                            <div className="panel-heading">
-                                <h3 className="panel-title"><i className="fa fa-bar-chart-o fa-fw"></i> Area Chart</h3>
-                            </div>
-                            <div className="panel-body">
-                                <div id="morris-area-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-
-                <div className="row">
-                    <div className="col-lg-4">
-                        <div className="panel panel-default">
-                            <div className="panel-heading">
-                                <h3 className="panel-title"><i className="fa fa-long-arrow-right fa-fw"></i> Donut Chart</h3>
-                            </div>
-                            <div className="panel-body">
-                                <div id="morris-donut-chart"></div>
-                                <div className="text-right">
-                                    <a href="#">View Details <i className="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-4">
-                        <div className="panel panel-default">
-                            <div className="panel-heading">
-                                <h3 className="panel-title"><i className="fa fa-clock-o fa-fw"></i> Tasks Panel</h3>
-                            </div>
-                            <div className="panel-body">
-                                <div className="list-group">
-                                    <a href="#" className="list-group-item">
-                                        <span className="badge">just now</span>
-                                        <i className="fa fa-fw fa-calendar"></i> Calendar updated
-                                    </a>
-                                    <a href="#" className="list-group-item">
-                                        <span className="badge">4 minutes ago</span>
-                                        <i className="fa fa-fw fa-comment"></i> Commented on a post
-                                    </a>
-                                    <a href="#" className="list-group-item">
-                                        <span className="badge">23 minutes ago</span>
-                                        <i className="fa fa-fw fa-truck"></i> Order 392 shipped
-                                    </a>
-                                    <a href="#" className="list-group-item">
-                                        <span className="badge">46 minutes ago</span>
-                                        <i className="fa fa-fw fa-money"></i> Invoice 653 has been paid
-                                    </a>
-                                    <a href="#" className="list-group-item">
-                                        <span className="badge">1 hour ago</span>
-                                        <i className="fa fa-fw fa-user"></i> A new user has been added
-                                    </a>
-                                    <a href="#" className="list-group-item">
-                                        <span className="badge">2 hours ago</span>
-                                        <i className="fa fa-fw fa-check"></i> Completed task: "pick up dry cleaning"
-                                    </a>
-                                    <a href="#" className="list-group-item">
-                                        <span className="badge">yesterday</span>
-                                        <i className="fa fa-fw fa-globe"></i> Saved the world
-                                    </a>
-                                    <a href="#" className="list-group-item">
-                                        <span className="badge">two days ago</span>
-                                        <i className="fa fa-fw fa-check"></i> Completed task: "fix error on sales page"
-                                    </a>
-                                </div>
-                                <div className="text-right">
-                                    <a href="#">View All Activity <i className="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-4">
-                        <div className="panel panel-default">
-                            <div className="panel-heading">
-                                <h3 className="panel-title"><i className="fa fa-money fa-fw"></i> Transactions Panel</h3>
-                            </div>
-                            <div className="panel-body">
-                                <div className="table-responsive">
-                                    <table className="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Order #</th>
-                                                <th>Order Date</th>
-                                                <th>Order Time</th>
-                                                <th>Amount (USD)</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>3326</td>
-                                                <td>10/21/2013</td>
-                                                <td>3:29 PM</td>
-                                                <td>$321.33</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3325</td>
-                                                <td>10/21/2013</td>
-                                                <td>3:20 PM</td>
-                                                <td>$234.34</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3324</td>
-                                                <td>10/21/2013</td>
-                                                <td>3:03 PM</td>
-                                                <td>$724.17</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3323</td>
-                                                <td>10/21/2013</td>
-                                                <td>3:00 PM</td>
-                                                <td>$23.71</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3322</td>
-                                                <td>10/21/2013</td>
-                                                <td>2:49 PM</td>
-                                                <td>$8345.23</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3321</td>
-                                                <td>10/21/2013</td>
-                                                <td>2:23 PM</td>
-                                                <td>$245.12</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3320</td>
-                                                <td>10/21/2013</td>
-                                                <td>2:15 PM</td>
-                                                <td>$5663.54</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3319</td>
-                                                <td>10/21/2013</td>
-                                                <td>2:13 PM</td>
-                                                <td>$943.45</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className="text-right">
-                                    <a href="#">View All Transactions <i className="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>                    </div>
-                </div>
-                
-
-            </div>
+          </div>
             
         </div>
         
 
     </div>
-    </body>
+    
+    
     </div>
     
     );
