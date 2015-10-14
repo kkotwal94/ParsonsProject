@@ -21,6 +21,7 @@ A web app that allows students to practice Parson's problems
 #Important notes about update:
 I set up the routes with the jsx files so they correspond. All the routes are nested or belong to dashboard, and I did that because you get to those routes or views through the dashboard. I haven't added any forms or anything, just tidied it up and added a nice interface for us to work with. 
 
+<strong>We should npm run-script dev when working in development mode, and start for production</strong>
 #How To set ups
 
 First install nodejs,mongodb, and then clone this repo with git.
