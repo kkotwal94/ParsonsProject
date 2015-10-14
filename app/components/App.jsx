@@ -1,7 +1,6 @@
 import React from 'react';
 import AltContainer from 'alt/AltContainer';
 import UserStore from 'stores/UserStore';
-import Navigation from 'components/Navigation';
 
 import 'scss/main';
 

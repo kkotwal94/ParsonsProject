@@ -2,8 +2,24 @@
 A web app that allows students to practice Parson's problems
 
 #CurrentBugs:
-* User names work, however they cannot find or query for usernames with '=, #, &' since they interfere with post method stuff
-* Finally, req.user, cannot be establish or mantained after logging in with passportjs even though it should be. 
+* Req.user, cannot be establish or mantained after logging in with passportjs even though it should be. 
+
+#Just Implemented/Done:
+* Added in Dashboard interface (Bootstrap SB Admin template)
+* Added in template for Profile 
+* Added in template for Problem
+* Added in template for Assignments
+* Added in template for Settings
+* Added in template for Statistics (Lower Priority)
+* Added in template for Messages/Inbox (Even Lower)
+* Added in template for Chat (Way below low)
+* Added in Sidebar
+* Added in Navbar
+* Adjusted all routes to point to correct routes, doesnt rerender nav or sidebar, creating singlepage effect
+* Font Awesome was used for icons, and JQuery for the bootstrap.js file, we can use all bootstrap stuff/css
+
+#Important notes about update:
+I set up the routes with the jsx files so they correspond. All the routes are nested or belong to dashboard, and I did that because you get to those routes or views through the dashboard. I haven't added any forms or anything, just tidied it up and added a nice interface for us to work with. 
 
 #How To set ups
 

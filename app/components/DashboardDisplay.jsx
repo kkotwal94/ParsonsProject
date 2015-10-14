@@ -1,8 +1,30 @@
 import React from 'react';
 import {Link} from 'react-router';
+import UserActions from 'actions/UserActions';
+import UserStore from 'stores/UserStore';
+import Immutable from 'immutable';
+
+export default class DashboardDisplay extends React.Component {
+    constructor(props) {
+    super(props);
+    this.state = UserStore.getState();
+  }
+
+  componentDidMount() {
+    UserStore.listen(this._onChange);
+  }
+
+  componentWillUnmount() {
+    UserStore.unlisten(this._onChange);
+  }
+
+  _onChange = () => {
+    this.setState({
+      user: UserStore.getState().user
+    });
+  }
 
 
-export default class About extends React.Component {
   render() {
     return (
       <div>
@@ -11,26 +33,19 @@ export default class About extends React.Component {
             <div className="row">
                     <div className="col-lg-12">
                         <h1 className="page-header">
-                            About <small>About this webapp</small>
+                            Dashboard
                         </h1>
                         <ol className="breadcrumb">
                             <li className="active">
                                 <i className="fa fa-dashboard"></i> <Link to ="/dashboard/main">Dashboard</Link>
                             </li>
-                            <li>
-                            
-                            About
-                            </li>
                         </ol>
-                        <div>
-                        Where about should be
-                        </div>
+                        <div> Where Dashboard stuff should be!</div>
                     </div>
                 </div>
           </div>
             
         </div>
-
     );
   }
 }

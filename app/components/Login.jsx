@@ -46,7 +46,7 @@ export default class Login extends React.Component {
   <div className={styles['wrapper']}>
   <div className={styles['container']}>
     <h1 className={styles['login__header']}>LoggedIN!</h1>
-    <a href="/dashboard">Lets head to the dashboard </a>
+    <a href="/dashboard/main">Lets head to the dashboard </a>
     <hr />
     </div>
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {Link, RouteHandler} from 'react-router';
 import UserActions from 'actions/UserActions';
 import UserStore from 'stores/UserStore';
 import Immutable from 'immutable';
@@ -53,7 +53,7 @@ export default class Dashboard extends React.Component {
                     <span className="icon-bar"></span>
                     <span className="icon-bar"></span>
                 </button>
-                <a className="navbar-brand" href="index.html">Parsons Problems</a>
+                <a className="navbar-brand">Parsons Problems</a>
             </div>
            
             <ul className="nav navbar-right top-nav">
@@ -144,17 +144,17 @@ export default class Dashboard extends React.Component {
                     <a href="#" className={styles['top-nava']} data-toggle="dropdown"><i className="fa fa-user"></i>{firstName + " " + lastName} <b className="caret"></b></a>
                     <ul className="dropdown-menu">
                         <li>
-                            <a href="#"><i className="fa fa-fw fa-user"></i> Profile</a>
+                            <Link to="/dashboard/profile"><i className="fa fa-fw fa-user"></i> Profile</Link>
                         </li>
                         <li>
-                            <a href="#"><i className="fa fa-fw fa-envelope"></i> Inbox</a>
+                            <Link to="/dashboard/inbox"><i className="fa fa-fw fa-envelope"></i> Inbox</Link>
                         </li>
                         <li>
-                            <a href="#"><i className="fa fa-fw fa-gear"></i> Settings</a>
+                            <Link to="/dashboard/settings"><i className="fa fa-fw fa-gear"></i> Settings</Link>
                         </li>
                         <li className="divider"></li>
                         <li>
-                            <a href="#"><i className="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="/logout"><i className="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -165,39 +165,39 @@ export default class Dashboard extends React.Component {
               <div className={styles['side-nav']}>
                 <ul className="nav navbar-nav side-nav">
                     <li className="active">
-                        <a className={styles['items']} href="index.html"><i className="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <Link to="/dashboard/main" className={styles['items']}><i className="fa fa-fw fa-dashboard"></i> Dashboard</Link>
                     </li>
                     <li>
-                        <a className={styles['items']} href="charts.html"><i className="fa fa-fw fa-bar-chart-o"></i> Profile</a>
+                        <Link to="/dashboard/profile" className={styles['items']}><i className="fa fa-user"></i> Profile</Link>
                     </li>
                     <li>
-                        <a className={styles['items']} href="tables.html"><i className="fa fa-fw fa-table"></i> Random Problems!</a>
+                        <Link to="/dashboard/randomproblem" className={styles['items']}><i className="fa fa-random"></i> Random Problems!</Link>
                     </li>
                     <li>
-                        <a className={styles['items']} href="forms.html"><i className="fa fa-fw fa-edit"></i> Assignments</a>
+                        <Link to="/dashboard/assignments" className={styles['items']}><i className="fa fa-pencil-square-o"></i> Assignments</Link>
                     </li>
                     <li>
-                        <a className={styles['items']} href="bootstrap-elements.html"><i className="fa fa-fw fa-desktop"></i> Sakai</a>
+                        <a className={styles['items']} href="https://sakai.udel.edu/"><i className="fa fa-retweet"></i> Sakai</a>
                     </li>
                     <li>
-                        <a className={styles['items']} href="bootstrap-grid.html"><i className="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
+                        <Link to="/dashboard/statistics" className={styles['items']}><i className="fa fa-bar-chart"></i> Statistics</Link>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo" className={styles['items']}><i className="fa fa-fw fa-arrows-v"></i> Dropdown <i className="fa fa-fw fa-caret-down"></i></a>
+                        <Link to="/dashboard/chat" href="javascript:;" data-toggle="collapse" data-target="#demo" className={styles['items']}><i className="fa fa-weixin"></i> Chatroom <i className="fa fa-fw fa-caret-down"></i></Link>
                         <ul id="demo" className="collapse">
                             <li>
-                                <a className={styles['dropdownstuff']} href="#">Dropdown Item</a>
+                                <a className={styles['dropdownstuff']} href="#">Chat Room 1</a>
                             </li>
                             <li>
-                                <a className={styles['dropdownstuff']} href="#">Dropdown Item</a>
+                                <a className={styles['dropdownstuff']} href="#">Chat Room 2</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <Link to="about" className={styles['items']} href="blank-page.html"><i className="fa fa-fw fa-file"></i> About</Link>
+                        <Link to='/dashboard/about' className={styles['items']}><i className="fa fa-info"></i> About</Link>
                     </li>
                     <li>
-                        <a className={styles['items']} href="index-rtl.html"><i className="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+                        <a className={styles['items']} href="https://github.com/kkotwal94/ParsonsProject"><i className="fa fa-github"></i> Github</a>
                     </li>
                 </ul>
               </div>
@@ -206,31 +206,11 @@ export default class Dashboard extends React.Component {
         </nav>
 
         <div className={styles['page-wrapper']}>
-          <div className ="container-fluid">
-            <div className="row">
-                    <div className="col-lg-12">
-                        <h1 className="page-header">
-                            Dashboard <small>Statistics Overview</small>
-                        </h1>
-                        <ol className="breadcrumb">
-                            <li className="active">
-                                <i className="fa fa-dashboard"></i> Dashboard
-                            </li>
-                            <li>
-                            
-                            <Link to="about">About</Link>
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-          </div>
-            
-        </div>
-        
-
+          {this.props.children}
+         </div>
+    
+    
     </div>
-    
-    
     </div>
     
     );
