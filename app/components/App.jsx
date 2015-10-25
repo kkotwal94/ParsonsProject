@@ -1,7 +1,8 @@
 import React from 'react';
 import AltContainer from 'alt/AltContainer';
 import UserStore from 'stores/UserStore';
-
+let injectTapEventPlugin = require('react-tap-event-plugin');
+injectTapEventPlugin();
 import 'scss/main';
 
 /*
@@ -20,6 +21,21 @@ import 'scss/main';
  * what they need. In addition to keeping the controller-like behavior at the top of the hierarchy, and thus keeping our descendant
  */
 export default class App extends React.Component {
+
+  /*childContextTypes : {
+    muiTheme: React.PropTypes.object,
+  }
+
+  getChildContext() {
+    return {
+      muiTheme: ThemeManager.getCurrentTheme()
+    };
+  }
+
+  componentWillMount() {
+  	ThemeManager.setTheme(ThemeManager.types.LIGHT);
+  }
+*/
   render() {
     return (
       <AltContainer stores={{
