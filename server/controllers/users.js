@@ -72,8 +72,7 @@ exports.postLogin = function(req, res, next) {
  * POST UpdateUser Profile
  */
 exports.updateUserProfile = function(req, res) {
-      console.log("Request User: " + require);
-      var id = req.user._id;
+      var id = req.body.id;
       if (req.body.firstName == "") {
         req.body.firstName = req.user.profile.firstName;
       }
@@ -87,12 +86,16 @@ exports.updateUserProfile = function(req, res) {
         req.body.section = req.user.profile.section;
       }
 
+       if (req.body.location == "") {
+        req.body.location = req.user.profile.location;
+      }
+
       User.findById(id, function(err, user) {
-        console.log("ID: " + id);
         user.profile.firstName = req.body.firstName;
         user.profile.lastName = req.body.lastName;
         user.profile.gender = req.body.gender;
         user.profile.section = req.body.section;
+        user.profile.location = req.body.location;
         user.save();
         res.end();
       });
@@ -133,7 +136,9 @@ exports.postSignUp = function(req, res, next) {
     profile: {
       firstName : req.body.firstName,
       lastName : req.body.lastName,
-      section : req.body.section
+      section : req.body.section,
+      gender : req.body.gender,
+      location : req.body.location
     }
   });
   User.findOne({email: req.body.email}, function(err, existingUser) {

@@ -35,6 +35,8 @@ render() {
       <input type="text" className = {styles['form-control']} placeholder="First Name" name = "firstName"/>
       <input type="text" className = {styles['form-control']} placeholder="Last Name" name = "lastName"/>
       <input type="text" className = {styles['form-control']} placeholder="Section #" name = "section"/>
+      <input type="text" className = {styles['form-control']} placeholder="Gender" name = "gender"/>
+      <input type="text" className = {styles['form-control']} placeholder="Location" name = "location"/>
 			<button type="submit" className={styles['login-button']}>Signup</button>
 		</form>
 		<hr/>

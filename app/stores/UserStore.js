@@ -34,7 +34,6 @@ class UserStore {
     // Instance variables defined anywhere in the store will become the state. You can initialize these in the constructor and
     // then update them directly in the prototype methods
     this.user = Immutable.Map({});
-
     // (lifecycleMethod: string, handler: function): undefined
     // on: This method can be used to listen to Lifecycle events. Normally they would set up in the constructor
     this.on('init', this.bootstrap);
@@ -48,7 +47,9 @@ class UserStore {
       handleLoginAttempt: UserActions.MANUALLOGIN,
       handleLoginSuccess: UserActions.LOGINSUCCESS,
       handleLogoutAttempt: UserActions.LOGOUT,
-      handleLogoutSuccess: UserActions.LOGOUTSUCCESS
+      handleLogoutSuccess: UserActions.LOGOUTSUCCESS,
+      handleProfileUpdate: UserActions.UPDATE_PROFILE,
+      handleProfileUpdateSuccess: UserActions.UPDATE_PROFILE_SUCCESS
     });
   }
 
@@ -76,6 +77,42 @@ class UserStore {
   handleLogoutSuccess() {
     this.user = this.user.merge({ isWaiting: false, authenticated: false });
     this.emitChange();
+  }
+
+  handleProfileUpdate() {
+    console.log('Attempting profile update');
+    this.emitChange();
+  }
+
+  handleProfileUpdateSuccess(data) {
+    console.log('Profile update success');
+
+    if (data.firstName == "") {
+        data.firstName = this.user.get('profile').get('firstName');
+    }
+    if (data.lastName == "") {
+        data.lastName = this.user.get('profile').get('lastName');
+    }
+      
+    if (data.section == "") {
+        data.section = this.user.get('profile').get('section');
+    }
+    if (data.gender == "") {
+        data.gender = this.user.get('profile').get('gender');
+    }
+    if (data.location == "") {
+        data.location = this.user.get('profile').get('location');
+    }
+
+
+    this.user = this.user.updateIn(['profile','firstName'], x => data.firstName);
+    this.user = this.user.updateIn(['profile','lastName'], x => data.lastName);
+    this.user = this.user.updateIn(['profile','section'], x => data.section);
+    this.user = this.user.updateIn(['profile','gender'], x => data.gender);
+    this.user = this.user.updateIn(['profile','location'], x => data.location);
+
+    //console.log(this.user);
+    this.emitChange();  
   }
 
 }

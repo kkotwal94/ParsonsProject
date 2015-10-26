@@ -5,6 +5,19 @@ A web app that allows students to practice Parson's problems
 * Req.user, cannot be establish or mantained after logging in with passportjs even though it should be. 
 
 #Just Implemented/Done:
+
+#10/25 - Profile Component
+
+* Added in user updating data
+* Added in Location and gender to signup (doesnt really matter)
+* Added in databinding between store, actions, so front end gels together
+* Tested POST request for updating user info
+* Created UI for updating data
+* Asynchronous data loading front end, and backend (this is a cool way to see how react, and flux handle updating data instantly)
+* Installed REACT-Drag-N-Drop
+* Updated React to v14 (no breaking changes)
+
+#10/09
 * Added in Dashboard interface (Bootstrap SB Admin template)
 * Added in template for Profile 
 * Added in template for Problem
@@ -22,6 +35,7 @@ A web app that allows students to practice Parson's problems
 I set up the routes with the jsx files so they correspond. All the routes are nested or belong to dashboard, and I did that because you get to those routes or views through the dashboard. I haven't added any forms or anything, just tidied it up and added a nice interface for us to work with. 
 
 <strong>We should npm run-script dev when working in development mode, and start for production</strong>
+
 #How To set ups
 
 First install nodejs,mongodb, and then clone this repo with git.

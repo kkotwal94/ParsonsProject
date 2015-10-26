@@ -31,10 +31,10 @@ export default class Dashboard extends React.Component {
 
 
   render() {
-  	console.log(this.state.user);
-    console.log(this.state.user.get('email'));
-    console.log(this.state.user.get('id'));
-    console.log(this.state.user.get('profile').get('firstName'));
+  	//console.log(this.state.user);
+    //console.log(this.state.user.get('email'));
+    //console.log(this.state.user.get('id'));
+    //console.log(this.state.user.get('profile').get('firstName'));
     let firstName = this.state.user.get('profile').get('firstName');
     let lastName = this.state.user.get('profile').get('lastName');
     return (

@@ -9,6 +9,22 @@ import UserWebAPIUtils from 'utils/UserWebAPIUtils';
  */
 class UserActions {
 
+  updateProfile(data) {
+    this.dispatch(data);
+    UserWebAPIUtils.updateProfile(data)
+      .then((response, textStatus) => {
+        if(textStatus === 'success'){
+        this.actions.updateProfileSuccess(data)
+      }
+    }, () => {
+
+    });
+  }
+
+  updateProfileSuccess(data) {
+    this.dispatch(data);
+  }
+
   manuallogin(data) {
     this.dispatch();
     UserWebAPIUtils.manuallogin(data)

@@ -111,10 +111,12 @@ body :-ms-input-placeholder {
           transition-duration: 0.25s;
   font-weight: 300;
 }
-form input:hover {
+
+.signupForm input:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
-form input:focus {
+
+.signupForm input:focus {
   background-color: white;
   width: 300px;
   color: #e74c3c;

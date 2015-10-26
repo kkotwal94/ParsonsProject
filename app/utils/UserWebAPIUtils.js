@@ -15,6 +15,20 @@ const utils = {
   },
 
   /*
+   * @param {Object} payload to be sent to server
+   * @return {Promise}
+   */
+
+   updateProfile: (data) => {
+    return $.ajax({
+      url: '/updateUserProfile',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(data)
+    });
+  },
+
+  /*
    * @return {Promise}
    */
   logout: () => {
