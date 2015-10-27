@@ -16,6 +16,7 @@ import Inbox from 'components/Inbox';
 import Settings from 'components/Settings';
 import Chat from 'components/Chat';
 import DashboardDisplay from 'components/DashboardDisplay';
+import CreateProblem from 'components/CreateProblem';
 
 function requireAuth(nextState, transition) {
   if (!UserStore.getState().user.get('authenticated')) {
@@ -37,7 +38,8 @@ export default (
       <Route path="/statistics" component={Statistics} onEnter={requireAuth}/> 
       <Route path="/inbox" component={Inbox} onEnter={requireAuth}/>
       <Route path="/settings" component={Settings} onEnter={requireAuth}/>
-      <Route path="/chat" component={Chat} onEnter={requireAuth}/>          
+      <Route path="/chat" component={Chat} onEnter={requireAuth}/>   
+      <Route path="/createproblem" component={CreateProblem} onEnter={requireAuth}/>       
       <Route path="*" component={NotFound}/>
   </Route>
   </Route>

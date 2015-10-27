@@ -43,7 +43,7 @@ export default class RandomProblem extends React.Component {
                             Random Problem
                             </li>
                         </ol>
-                        <div> Where Random Problems should be!</div>
+                        <div> Where Random Problemss should be!</div>
                     </div>
                 </div>
           </div>

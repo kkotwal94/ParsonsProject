@@ -164,7 +164,7 @@ export default class Dashboard extends React.Component {
             <div className="collapse navbar-collapse navbar-ex1-collapse">
               <div className={styles['side-nav']}>
                 <ul className="nav navbar-nav side-nav">
-                    <li className="active">
+                    <li>
                         <Link to="/dashboard/main" className={styles['items']}><i className="fa fa-fw fa-dashboard"></i> Dashboard</Link>
                     </li>
                     <li>
@@ -175,6 +175,9 @@ export default class Dashboard extends React.Component {
                     </li>
                     <li>
                         <Link to="/dashboard/assignments" className={styles['items']}><i className="fa fa-pencil-square-o"></i> Assignments</Link>
+                    </li>
+                    <li>
+                        <Link to="/dashboard/createproblem" className={styles['items']}><i className="fa fa-pencil-square"></i> Generate Problems</Link>
                     </li>
                     <li>
                         <a className={styles['items']} href="https://sakai.udel.edu/"><i className="fa fa-retweet"></i> Sakai</a>
