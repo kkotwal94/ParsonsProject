@@ -8,7 +8,7 @@ export default class CreateProblem extends React.Component {
     constructor(props) {
     super(props);
     this.state = UserStore.getState();
-    this.state.count = 0;
+    this.state.count = 2;
   }
 
   componentDidMount() {
@@ -27,46 +27,46 @@ export default class CreateProblem extends React.Component {
   }
 
   _onSubmit = () => {
+    let count = this.state.count;
+    let codeArray = [];
+    for(let i = 1; i < count; i++) {
+      console.log(i);
+      let refName = "code-" + i;
+      console.log(this.refs[refName]);
+      codeArray[i] = React.findDOMNode(this.refs[refName]).value;
+    }
+    console.log(codeArray);
     console.log(this.state.count);
     console.log('reached OnSubmit');
+
   }
 
   _onPlus = () => {
-      let number = document.getElementById("memberadd").value;
-            // Container <div> where dynamic content will be placed
-            let i = 0;
-            this.setState({
-              count: 0
-            });
             let container = document.getElementById("containeradd");
+            let inputLine = document.getElementById("inputline");
             // Clear previous contents of the container
-            while (container.hasChildNodes()) {
-                container.removeChild(container.lastChild);
-            }
-            for (i;i<number;i++){
-                // Append a node with a random text
-                let label = document.createElement('label');
-                label.innerHTML = "Insert Line of code";
-                container.appendChild(label);
-                // Create an <input> element, set its type and name attributes
-                let input = document.createElement("input");
-                input.type = "text";
-                input.name = "member" + i;
-                input.className = "form-control";
-                input.ref = "code" + i;
-                container.appendChild(input);
-                // Append a line break 
-                container.appendChild(document.createElement("br"));
+            // Create an <input> element, set its type and name attributes
+            let input = document.createElement("input");
+            let count = this.state.count;
+            input.placeholder = "Code Line #" + count;
+            input.type = "text";
+            input.className = "form-control";
+            input.ref = "code-" + count;
+            inputline.appendChild(document.createElement("br"));
+            inputline.appendChild(input);
+            // Append a line break
+            count = count + 1; 
+            this.setState({
+              count: count
+            })
+
+            /*let button = document.createElement("button");
+            button.className = "btn btn-danger";
+            button.innerHTML = "Submit Code!";
+            */
+           
               
-            }
-          let button = document.createElement('button');
-          button.className = "btn btn-danger";
-          button.innerHTML = "Submit Code!";
-          this.setState({
-                  count : i
-                });
-          button.onclick = this._onSubmit;
-          container.appendChild(button);
+            
         }
 
   render() {
@@ -90,7 +90,7 @@ export default class CreateProblem extends React.Component {
                         </ol>
                         
                         <div>
-                        <h3>Insert lines of code for each input</h3>
+                        <h3>"Use this page in order to create a new Parson's problem"</h3>
                         </div>
                       </div>
                 </div>
@@ -98,13 +98,14 @@ export default class CreateProblem extends React.Component {
                 <div className="row">
                     <div className="col-lg-7">
                       <div className="panel panel-primary">
-                        <div className="panel-heading">Creating a problem</div>
+                        <div className="panel-heading">New Problem</div>
                             <div className="panel-body">
-                                <div className="form-group">
-                                  <label>Insert the number of lines in the solution</label>
-                                  <input type="code" id = "memberadd" className="form-control" placeholder="Insert How many lines of code the solution has" ref="code" />
+                                <div className="form-group" id="inputline">
+                                  <label>Use this space to generate a new Parson problem</label>
+                                  <input type="code" id = "memberadd" className="form-control" placeholder="Code Line #1" ref="code-1" />
                                 </div>
-                                <button className="btn btn-primary" onClick={this._onPlus}>Submit</button>
+                                <button className="btn btn-danger"  onClick={this._onSubmit}>Submit Code!</button>
+                                <button className="btn btn-primary" onClick={this._onPlus}>Add Line</button>
                                 <div id = "containeradd"/>
                                 
                             </div>
