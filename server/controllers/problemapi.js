@@ -6,3 +6,8 @@ var Feedback = require('../models/feedback');
 var UserProblemPair = require('../models/userproblempair');
 
 //POST GET API METHODS for ParsonsProblems
+
+exports.createProblem = function(req, res, next) {
+	console.log(req.body);
+	res.json(req.body);
+};

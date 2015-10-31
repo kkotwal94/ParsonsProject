@@ -16,7 +16,12 @@ module.exports = function(app, passport) {
   app.post('/login', users.postLogin);  
   app.post('/signup', users.postSignUp);
   app.get('/logout', users.getLogout);
-
+  
+  //api call for creating problem
+  app.post('/createProblem', function(req, res) {
+    problem.createProblem(req,res);
+  });
+  
   
   app.post('/updateUserProfile', function(req, res) {
     users.updateUserProfile(req, res);

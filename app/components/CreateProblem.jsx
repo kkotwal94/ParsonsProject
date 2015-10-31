@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from 'react-router';
 import UserActions from 'actions/UserActions';
 import UserStore from 'stores/UserStore';
+import ParsonsStore from 'stores/ParsonsStore';
+import ParsonsActions from 'actions/ParsonsActions';
 import Immutable from 'immutable';
 
 export default class CreateProblem extends React.Component {
@@ -12,16 +14,19 @@ export default class CreateProblem extends React.Component {
   }
 
   componentDidMount() {
+    ParsonsStore.listen(this._onChange);
     UserStore.listen(this._onChange);
   }
 
   componentWillUnmount() {
+    ParsonsStore.unlisten(this._onChange);
     UserStore.unlisten(this._onChange);
   }
 
   _onChange = () => {
     this.setState({
       user: UserStore.getState().user,
+      parsons: ParsonsStore.getState().parsons,
       count: 0
     });
   }
@@ -32,17 +37,30 @@ export default class CreateProblem extends React.Component {
     for(let i = 1; i < count; i++) {
       console.log(i);
       let refName = "code-" + i;
-      console.log(this.refs[refName]);
-      codeArray[i] = React.findDOMNode(this.refs[refName]).value;
+      console.log(document.getElementById(refName).value);
+      codeArray[i-1] = document.getElementById(refName).value;
     }
-    console.log(codeArray);
-    console.log(this.state.count);
-    console.log('reached OnSubmit');
+    const id = this.state.user.get('id');
+    const title = React.findDOMNode(this.refs.title).value;
+    const description = React.findDOMNode(this.refs.description).value;
+    const codelines = codeArray;
+
+    ParsonsActions.createProblem({
+      id: id,
+      title: title,
+      description: description,
+      codelines: codelines
+    });
+
+    //console.log(codeArray);
+    //console.log(this.state.count);
+    //console.log('reached OnSubmit');
+
 
   }
 
   _onPlus = () => {
-            let container = document.getElementById("containeradd");
+            //let container = document.getElementById("containeradd");
             let inputLine = document.getElementById("inputline");
             // Clear previous contents of the container
             // Create an <input> element, set its type and name attributes
@@ -52,8 +70,9 @@ export default class CreateProblem extends React.Component {
             input.type = "text";
             input.className = "form-control";
             input.ref = "code-" + count;
-            inputline.appendChild(document.createElement("br"));
-            inputline.appendChild(input);
+            input.id = "code-" + count;
+            inputLine.appendChild(document.createElement("br"));
+            inputLine.appendChild(input);
             // Append a line break
             count = count + 1; 
             this.setState({
@@ -70,7 +89,8 @@ export default class CreateProblem extends React.Component {
         }
 
   render() {
-    console.log(this.state.count);
+    //console.log(this.state.count);
+    console.log(this.state.parsons);
     return (
 <div>
       <div className ="container-fluid">
@@ -88,10 +108,6 @@ export default class CreateProblem extends React.Component {
                            Create Problem
                             </li>
                         </ol>
-                        
-                        <div>
-                        <h3>"Use this page in order to create a new Parson's problem"</h3>
-                        </div>
                       </div>
                 </div>
 
@@ -101,10 +117,19 @@ export default class CreateProblem extends React.Component {
                         <div className="panel-heading">New Problem</div>
                             <div className="panel-body">
                                 <div className="form-group" id="inputline">
+                                  <label>Enter the Problem Title here</label>
+                                  <input type="code" id = "code-title" className = "form-control" placeholder="Problem Title" ref="title"/>
+                                  
+                                  <label>Enter the Problem Description here</label>
+                                  <input type="code" id = "code-description" className = "form-control" placeholder="Problem Description" ref="description"/>
+
                                   <label>Use this space to generate a new Parson problem</label>
-                                  <input type="code" id = "memberadd" className="form-control" placeholder="Code Line #1" ref="code-1" />
+                                  <input type="code" id = "code-1" className="form-control" placeholder="Code Line #1" ref="code-1" />
+                                
                                 </div>
                                 <button className="btn btn-danger"  onClick={this._onSubmit}>Submit Code!</button>
+                                <br/>
+                                <br/>
                                 <button className="btn btn-primary" onClick={this._onPlus}>Add Line</button>
                                 <div id = "containeradd"/>
                                 

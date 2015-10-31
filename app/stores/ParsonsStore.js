@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import TopicActions from 'actions/TopicActions';
+import ParsonsActions from 'actions/ParsonsActions';
 import { fromJSOrdered } from 'utils/immutableHelpers';
 import alt from 'altInstance';
 
@@ -25,7 +25,7 @@ import alt from 'altInstance';
  * the methods in the constructor using StoreModel#exportPublicMethods.
  *
  */
-class TopicStore {
+class ParsonsStore {
 
   /*
    * The constructor of your store definition receives the alt instance as its first and only argument. All instance variables,
@@ -34,9 +34,9 @@ class TopicStore {
   constructor() {
     // Instance variables defined anywhere in the store will become the state. You can initialize these in the constructor and
     // then update them directly in the prototype methods
-    this.topics = Immutable.OrderedMap({});
+    this.parsons = []; //our currently created parsons problems
+    this.allParsons = Immutable.Map({}); //should be all the parsons problems that exist
     // Do not think we need an Immutable object here
-    this.newTopic = '';
 
     // (lifecycleMethod: string, handler: function): undefined
     // on: This method can be used to listen to Lifecycle events. Normally they would set up in the constructor
@@ -47,54 +47,30 @@ class TopicStore {
     // StoreModel and the values can either be an array of action symbols or a single action symbol.
     // Remember: alt generates uppercase constants for us to reference
     this.bindListeners({
-      handleIncrement: TopicActions.INCREMENT,
-      handleDecrement: TopicActions.DECREMENT,
-      handleCreate: TopicActions.CREATE,
-      handleDestroy: TopicActions.DESTROY,
-      handleTyping: TopicActions.TYPING
+      handleCreateProblem: ParsonsActions.CREATE_PROBLEM,
+      handleCreateProblemSuccess: ParsonsActions.CREATE_PROBLEM_SUCCESS
     });
   }
 
   bootstrap() {
-    if (!Immutable.OrderedMap.isOrderedMap(this.topics)) {
-      this.topics = fromJSOrdered(this.topics);
+    if (!Immutable.Map.isMap(this.allParsons)) {
+      this.allParsons = Immutable.fromJS(this.allParsons);
     }
-    this.newTopic = '';
+      this.parsons = [];
+  
   }
-
-  handleIncrement(id) {
-    const topic = this.topics.get(id);
-    const count = topic.get('count');
-    this.topics = this.topics.set(id, topic.set('count', count + 1));
+  
+  handleCreateProblem(){
+    
     this.emitChange();
   }
 
-  handleDecrement(id) {
-    const topic = this.topics.get(id);
-    const count = topic.get('count');
-    this.topics = this.topics.set(id, topic.set('count', count - 1));
+  handleCreateProblemSuccess(data){
+    this.parsons = data;
     this.emitChange();
-  }
-
-  handleCreate(data) {
-    const id = data.id;
-    this.topics = this.topics.set(id, Immutable.fromJS(data));
-    this.emitChange();
-  }
-
-  handleDestroy(id) {
-    this.topics = this.topics.delete(id);
-    this.emitChange();
-  }
-
-  handleTyping(text) {
-    // Check if it already exists
-    this.newTopic = text;
-    this.emitChange();
-    // otherwise, it is unchanged.
   }
 
 }
 
 // Export our newly created Store
-export default alt.createStore(TopicStore, 'TopicStore');
+export default alt.createStore(ParsonsStore, 'ParsonsStore');

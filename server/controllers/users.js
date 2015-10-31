@@ -105,8 +105,8 @@ exports.updateUserProfile = function(req, res) {
  * GET /logout
  */
 exports.getAllUsers = function(req, res) {
-  console.log("TESTTTTTT");
-  console.log(res.locals.data);
+  //console.log("TESTTTTTT");
+  //console.log(res.locals.data);
   User.find({}, function (err, users) {
             //console.log(users);
             res.json(users);
