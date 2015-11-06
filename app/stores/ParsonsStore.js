@@ -36,6 +36,7 @@ class ParsonsStore {
     // then update them directly in the prototype methods
     this.parsons = []; //our currently created parsons problems
     this.allParsons = Immutable.Map({}); //should be all the parsons problems that exist
+    this.allProblems = [];
     // Do not think we need an Immutable object here
 
     // (lifecycleMethod: string, handler: function): undefined
@@ -57,6 +58,9 @@ class ParsonsStore {
       this.allParsons = Immutable.fromJS(this.allParsons);
     }
       this.parsons = [];
+      this.allProblems = [{'_id' : '1234', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []}, 
+      {'_id' : '2345', 'title' : 'Poopymcboogerbutt2', 'description' : 'Its a poopy problems', 'codelines': ['a code line']}];
+
   
   }
   

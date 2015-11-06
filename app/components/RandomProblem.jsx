@@ -2,30 +2,42 @@ import React from 'react';
 import {Link} from 'react-router';
 import UserActions from 'actions/UserActions';
 import UserStore from 'stores/UserStore';
+import ParsonsStore from 'stores/ParsonsStore';
 import Immutable from 'immutable';
 
 export default class RandomProblem extends React.Component {
     constructor(props) {
     super(props);
     this.state = UserStore.getState();
+    this.shit = ParsonsStore.getState();
   }
 
   componentDidMount() {
     UserStore.listen(this._onChange);
-  }
+    ParsonsStore.listen(this._onChange);
+    }
+  
 
   componentWillUnmount() {
     UserStore.unlisten(this._onChange);
+    ParsonsStore.unlisten(this._onChange);
   }
 
   _onChange = () => {
     this.setState({
-      user: UserStore.getState().user
+      user: UserStore.getState().user,
+      allProblems: ReportStore.getState().allProblems
     });
+  }
+
+  _onGoToProblem = () => {
+   console.log("Should be heading to the problem page. Update this logic.");
   }
 
 
   render() {
+    console.log(this.shit.allProblems);
+    let allProblems = this.shit.allProblems;
     return (
       <div>
       <div className ="container-fluid">
@@ -43,11 +55,21 @@ export default class RandomProblem extends React.Component {
                             Random Problem
                             </li>
                         </ol>
-                        <div> Where Random Problemss should be!</div>
+                        <div className="col-lg-4">
+                        {allProblems.map((prob) =>
+                          <div className="panel panel-primary" id="problem" key={'problem' + prob._id}>
+                            <div className="panel-heading">{prob.title}</div>
+                              <div className="panel-body">
+                              <p>{prob.description}</p>
+                              <button className="btn btn-primary" onClick={this._onGoToProblem}>Try it!</button>
+                              </div>
+                          </div>
+                        )}
                     </div>
                 </div>
           </div>
             
+        </div>
         </div>
     );
   }
