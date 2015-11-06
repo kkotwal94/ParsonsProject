@@ -6,6 +6,10 @@ A web app that allows students to practice Parson's problems
 
 #Just Implemented/Done:
 
+#11/6 - Current requirements list and status report
+* https://docs.google.com/spreadsheets/d/1OiSD0A0X4Z_KUceu_i9i0lEeXYk6gByobHI9ZzPnbiM/edit?usp=sharing
+
+
 #10/25 - Profile Component
 
 * Added in user updating data
