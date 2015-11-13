@@ -19,6 +19,7 @@
   "license": "MIT",
   "devDependencies": {
     "react-hot-loader": "^1.2.8",
+    "react": "~0.14.0",
     "webpack-dev-server": "^1.10.1"
   },
   "engines": {
@@ -66,7 +67,6 @@
     "url-loader": "^0.5.6",
     "webpack": "^1.9.11",
     "react-tap-event-plugin": "~0.1.7",
-    "material-ui": "~0.12.3",
     "react-dom": "~0.14.0",
     "react-dnd": "~2.0.2"
   }

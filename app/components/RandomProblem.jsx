@@ -9,7 +9,7 @@ export default class RandomProblem extends React.Component {
     constructor(props) {
     super(props);
     this.state = UserStore.getState();
-    this.shit = ParsonsStore.getState();
+    this.states = ParsonsStore.getState();
   }
 
   componentDidMount() {
@@ -36,8 +36,8 @@ export default class RandomProblem extends React.Component {
 
 
   render() {
-    console.log(this.shit.allProblems);
-    let allProblems = this.shit.allProblems;
+    console.log(this.states.allProblems);
+    let allProblems = this.states.allProblems;
     return (
       <div>
       <div className ="container-fluid">
