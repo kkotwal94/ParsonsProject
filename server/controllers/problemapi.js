@@ -37,3 +37,59 @@ exports.getAllProblems = function(req, res, next) {
 		}
 	});
 };
+
+  //get single problem by problem ID
+exports.getParsonsProblem = function(req, res, next) {
+	ParsonsProblem.findById(id, function(err, problem) {
+		if(!err) {
+			res.json(problem);
+		}
+		else {
+			Console.log("Couldn't find the problem");
+		}
+	});
+};
+
+//delete an existing problem
+exports.deleteParsonsProblem = function(req, res) {
+	ParsonsProblem.findByIdAndRemove(id, function(err, problem) {
+		if(err) {
+			console.log('Error on delete');
+			res.redirect('/createProblem');
+		}
+		else {
+			if (problem != null) {
+				res.status(200).send('Removed Successfully');
+			}
+		}
+		res.end();
+	});
+};
+
+//update an existing problem
+exports.updateParsonsProblem = function(req, res) {
+
+	var title = req.problem.id;
+	var description = req.problem.description;
+	var codelines = req.problem.codelines;
+
+	problem.findById(id, function(err, problem) {
+		if(err) {
+			res.redirect('/createProblem');
+			console.log('Error on update')
+		}
+		else {
+			if (problem.title != title) {
+				problem.title = title;
+			}
+			if (problem.description != description) {
+				problem.description = description;
+			}
+			if (problem.codelines != codelines) {
+				problem.codelines = codelines;
+			}
+			problem.save();
+			res.end();
+		}
+	});
+};
