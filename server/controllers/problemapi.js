@@ -23,3 +23,17 @@ exports.createProblem = function(req, res, next) {
 	console.log(newProblem);
 	res.json(req.body);
 };
+
+
+//obtaining all problems from db
+exports.getAllProblems = function(req, res, next) {
+	ParsonsProblem.find({}).exec(function(err, problems) { //{} indicates that we're searching for all problems, exec is syntax for starting a async callback
+		if(!err) {
+			res.json(problems); //return our json if there is no error
+		}
+
+		else {
+			console.log("Couldn't find all problems"); //if there is a error, tell us
+		}
+	});
+};
