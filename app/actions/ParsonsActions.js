@@ -21,6 +21,14 @@ class ParsonsActions {
   		this.dispatch(data);
   	}
 
+    getAllProblems() {
+      this.dispatch();
+    }
+
+    getAllProblemsSuccess() {
+      this.dispatch();
+    }
+
 }
 
 export default alt.createActions(ParsonsActions);
