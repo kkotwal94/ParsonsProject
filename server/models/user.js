@@ -29,7 +29,9 @@ var UserSchema = new mongoose.Schema({
   resetPasswordExpires: Date,
   google: {},
   problemPair: [{type: mongoose.Schema.Types.ObjectId, ref: 'UserProblemPair'}],
-  isStaff : { type: Boolean, default: false}
+  isStaff : { type: Boolean, default: false},
+  assignmentsCompleted: [{type: mongoose.Schema.Types.ObjectId, ref: 'Assignments'}],
+  problemsCompleted: [{type: mongoose.Schema.Types.ObjectId, ref: 'ParsonsProblem'}]
 });
 
 

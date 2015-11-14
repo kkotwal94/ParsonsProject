@@ -14,7 +14,9 @@ var ParsonsProblemSchema = new mongoose.Schema({
   description: {type: String, default: ''},
   problem: [{type:String, default: ''}],
   feedback: [{type: mongoose.Schema.Types.ObjectId, ref: 'Feedback'}],
-  tags: [String]
+  tags: [String],
+  createdByAdmin: {type: Boolean, default: false},
+  isCorrect: {type: Boolean, default: false}
 });
 
 

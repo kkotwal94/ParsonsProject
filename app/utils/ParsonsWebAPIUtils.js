@@ -9,7 +9,17 @@ const utils = {
       contentType: 'application/json',
       data: JSON.stringify(data)
     });
-  }
+  },
+
+  	getAllProblems: () => {
+  		return $.ajax({
+  			url: '/getAllProblems',
+  			type: 'GET',
+  			crossDomain: true,
+  			cache: false
+  		});
+  	}
+
 
 };
 
