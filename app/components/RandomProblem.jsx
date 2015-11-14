@@ -55,14 +55,28 @@ export default class RandomProblem extends React.Component {
                             Random Problem
                             </li>
                         </ol>
-                        <div className="col-lg-4">
+                        <div className ="row">
                         {allProblems.map((prob) =>
-                          <div className="panel panel-primary" id="problem" key={'problem' + prob._id}>
-                            <div className="panel-heading">{prob.title}</div>
+                          <div className="col-md-4">
+                          <div className={(() => {
+                                switch (prob._id % 4) {
+                                  default:      return "panel panel-primary";
+                                }
+                              })()} id="problem" key={'problem' + prob._id}>
+                            <div className="panel-heading" style={(() => {
+                                switch (prob._id % 4) {
+                                  case 0:   return { backgroundColor: "#2d2d2d!important", borderColor: "#2d2d2d!important"};
+                                  case 1: return { backgroundColor: "#cc7a6f!important", borderColor: "#cc7a6f!important"};
+                                  case 2:  return { backgroundColor: "#f8f5ec!important", borderColor: "#f8f5ec!important"};
+                                  default:      return { backgroundColor: "#61dafb!important", borderColor: "#61dafb!important"};
+                                }
+                              })()}>{prob.title}</div>
                               <div className="panel-body">
                               <p>{prob.description}</p>
+                              <p>{prob._id}</p>
                               <button className="btn btn-primary" onClick={this._onGoToProblem}>Try it!</button>
                               </div>
+                          </div>
                           </div>
                         )}
                     </div>

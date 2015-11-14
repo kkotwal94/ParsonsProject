@@ -36,6 +36,18 @@ module.exports = function(app, passport) {
     problem.getAllProblems(req, res);
   });
 
+   app.get('/getParsonsProblem', function(req, res) {
+    problem.getParsonsProblem(req, res);
+  });
+
+  app.post('/deleteParsonsProblem', function(req, res) {
+    problem.deleteParsonsProblem(req, res);
+  });
+
+  app.post('/updateParsonsProblem', function(req, res) {
+    problem.updateParsonsProblem(req, res);
+  });
+
 
   // google auth
   // Redirect the user to Google for authentication. When complete, Google
