@@ -61,7 +61,7 @@ class ParsonsStore {
       this.allParsons = Immutable.fromJS(this.allParsons);
     }
       this.parsons = [];
-      this.allProblems = [{'_id' : '1234', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},W
+      this.allProblems = [{'_id' : '1234', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
       {'_id' : '1235', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
       {'_id' : '1236', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
       {'_id' : '1237', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
