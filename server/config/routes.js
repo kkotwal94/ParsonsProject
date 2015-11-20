@@ -59,6 +59,15 @@ module.exports = function(app, passport) {
   app.post('/updateAssignment', function(req, res) {
     assignment.updateAssignment(req, res)
   });
+
+  app.post('/getAssignment', function(req, res, next) {
+    assignment.getAssignment(req, res, next)
+  });
+
+  app.post('/getAllAssignments', function(req, res, next) {
+    assignment.getAllAssignments(req, res, next);
+  });
+
   // google auth
   // Redirect the user to Google for authentication. When complete, Google
   // will redirect the user back to the application at
