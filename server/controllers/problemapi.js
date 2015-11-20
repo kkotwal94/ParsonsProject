@@ -11,7 +11,7 @@ exports.createProblem = function(req, res, next) {
 	console.log(req.body);
 	var title = req.body.title;
 	var description = req.body.description;
-	var problem = req.body.codelines;
+	var problem = req.body.codelines; //problem.codelines, will hold our codelines; {codeLines: [shit, shit, shit]}
 	var newProblem = new ParsonsProblem(req.body);
 	for (var i = 0; i < problem.length; i++) {
 		if (problem[i] != "") {
@@ -36,10 +36,12 @@ exports.getAllProblems = function(req, res, next) {
 			console.log("Couldn't find all problems"); //if there is a error, tell us
 		}
 	});
+
 };
 
   //get single problem by problem ID
 exports.getParsonsProblem = function(req, res, next) {
+	var id = req.body.id;
 	ParsonsProblem.findById(id, function(err, problem) {
 		if(!err) {
 			res.json(problem);
@@ -52,6 +54,7 @@ exports.getParsonsProblem = function(req, res, next) {
 
 //delete an existing problem
 exports.deleteParsonsProblem = function(req, res) {
+	var id = req.body.id;
 	ParsonsProblem.findByIdAndRemove(id, function(err, problem) {
 		if(err) {
 			console.log('Error on delete');
@@ -68,10 +71,10 @@ exports.deleteParsonsProblem = function(req, res) {
 
 //update an existing problem
 exports.updateParsonsProblem = function(req, res) {
-
-	var title = req.problem.id;
-	var description = req.problem.description;
-	var codelines = req.problem.codelines;
+	var id = req.body.id;
+	var title = req.body.title;
+	var description = req.body.description;
+	var codelines = req.body.codelines;
 
 	problem.findById(id, function(err, problem) {
 		if(err) {
@@ -92,4 +95,5 @@ exports.updateParsonsProblem = function(req, res) {
 			res.end();
 		}
 	});
+
 };
