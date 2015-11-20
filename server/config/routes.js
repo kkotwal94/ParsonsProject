@@ -23,7 +23,6 @@ module.exports = function(app, passport) {
     problem.createProblem(req,res);
   });
   
-  
   app.post('/updateUserProfile', function(req, res) {
     users.updateUserProfile(req, res);
   });
@@ -48,7 +47,18 @@ module.exports = function(app, passport) {
     problem.updateParsonsProblem(req, res);
   });
 
+  //api call for assignments
+  app.post('/createAssignment', function(req, res, next) {
+    assignment.createAssignment(req, res, next);
+  });
 
+  app.post('/deleteAssignment', function(req, res) {
+    assignment.deleteAssignment(req, res)
+  });
+
+  app.post('/updateAssignment', function(req, res) {
+    assignment.updateAssignment(req, res)
+  });
   // google auth
   // Redirect the user to Google for authentication. When complete, Google
   // will redirect the user back to the application at
