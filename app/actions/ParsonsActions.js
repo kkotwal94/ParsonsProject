@@ -23,10 +23,20 @@ class ParsonsActions {
 
     getAllProblems() {
       this.dispatch();
+      ParsonsWebAPIUtils.getAllProblems().done((data) => {
+        this.actions.getAllProblemsSuccess(data);
+      })
+      .fail((errorMessage) => {
+        this.actions.getAllProblemsError(errorMessage);
+      });
     }
 
-    getAllProblemsSuccess() {
-      this.dispatch();
+    getAllProblemsSuccess(data) {
+      this.dispatch(data);
+    }
+
+    getAllProblemsError(error) {
+      this.dispatch(error);
     }
 
 }

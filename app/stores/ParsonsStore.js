@@ -49,7 +49,10 @@ class ParsonsStore {
     // Remember: alt generates uppercase constants for us to reference
     this.bindListeners({
       handleCreateProblem: ParsonsActions.CREATE_PROBLEM,
-      handleCreateProblemSuccess: ParsonsActions.CREATE_PROBLEM_SUCCESS
+      handleCreateProblemSuccess: ParsonsActions.CREATE_PROBLEM_SUCCESS,
+      handleGetProblems: ParsonsActions.GET_ALL_PROBLEMS,
+      handleGetProblemsSuccess: ParsonsActions.GET_ALL_PROBLEMS_SUCCESS,
+      handleGetProblemsError: ParsonsActions.GET_ALL_PROBLEMS_ERROR
     });
   }
 
@@ -58,7 +61,7 @@ class ParsonsStore {
       this.allParsons = Immutable.fromJS(this.allParsons);
     }
       this.parsons = [];
-      this.allProblems = [{'_id' : '1234', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
+      this.allProblems = [{'_id' : '1234', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},W
       {'_id' : '1235', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
       {'_id' : '1236', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
       {'_id' : '1237', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
@@ -80,6 +83,19 @@ class ParsonsStore {
   handleCreateProblemSuccess(data){
     this.parsons = data;
     this.emitChange();
+  }
+
+  handleGetProblems() {
+    this.emitChange();
+  }
+
+  handleGetProblemsSuccess(data) {
+    this.allProblems = data;
+    this.emitChange();
+  }
+
+  handleGetProblemsError(error) {
+    this.emitChange(error);
   }
 
 }
