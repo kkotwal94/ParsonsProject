@@ -10,10 +10,12 @@ export default class CreateProblem extends React.Component {
     constructor(props) {
     super(props);
     this.state = UserStore.getState();
+    this.states = ParsonsStore.getState();
     this.state.count = 2;
   }
 
   componentDidMount() {
+    //ParsonsActions.getAllProblems();
     ParsonsStore.listen(this._onChange);
     UserStore.listen(this._onChange);
   }
@@ -27,6 +29,7 @@ export default class CreateProblem extends React.Component {
     this.setState({
       user: UserStore.getState().user,
       parsons: ParsonsStore.getState().parsons,
+      allProblems: ParsonsStore.getState().allProblems,
       count: 0
     });
   }
@@ -35,9 +38,9 @@ export default class CreateProblem extends React.Component {
     let count = this.state.count;
     let codeArray = [];
     for(let i = 1; i < count; i++) {
-      console.log(i);
+      //console.log(i);
       let refName = "code-" + i;
-      console.log(document.getElementById(refName).value);
+      //console.log(document.getElementById(refName).value);
       codeArray[i-1] = document.getElementById(refName).value;
     }
     const id = this.state.user.get('id');
@@ -90,7 +93,8 @@ export default class CreateProblem extends React.Component {
 
   render() {
     //console.log(this.state.count);
-    console.log(this.state.parsons);
+    //console.log(this.state.parsons);
+    console.log(this.states.allProblems);
     return (
 <div>
       <div className ="container-fluid">

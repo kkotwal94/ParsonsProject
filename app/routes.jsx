@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route,Router,Link} from 'react-router';
+import {Route,Link,Router} from 'react-router';
 
 import App from 'components/App';
 import About from 'components/About';
@@ -17,6 +17,7 @@ import Settings from 'components/Settings';
 import Chat from 'components/Chat';
 import DashboardDisplay from 'components/DashboardDisplay';
 import CreateProblem from 'components/CreateProblem';
+import RProblem from 'components/RProblem';
 
 function requireAuth(nextState, transition) {
   if (!UserStore.getState().user.get('authenticated')) {
@@ -34,7 +35,8 @@ export default (
       <Route path="/main" component={DashboardDisplay} onEnter={requireAuth}/>
       <Route path="/profile" component={Profile} onEnter={requireAuth}/>    
       <Route path="/assignments" component={Assignments} onEnter={requireAuth}/>
-      <Route path="/randomproblem" component={RandomProblem} onEnter={requireAuth}/> 
+      <Route path="/randomproblem" component={RandomProblem} onEnter={requireAuth}/>
+      <Route path="/randomproblem/:id" component={RProblem}/> 
       <Route path="/statistics" component={Statistics} onEnter={requireAuth}/> 
       <Route path="/inbox" component={Inbox} onEnter={requireAuth}/>
       <Route path="/settings" component={Settings} onEnter={requireAuth}/>

@@ -61,16 +61,7 @@ class ParsonsStore {
       this.allParsons = Immutable.fromJS(this.allParsons);
     }
       this.parsons = [];
-      this.allProblems = [{'_id' : '1234', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1235', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1236', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1237', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1238', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1239', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1240', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1241', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1242', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []}, 
-      {'_id' : '2343', 'title' : 'Poopymcboogerbutt2', 'description' : 'Its a poopy problems', 'codelines': ['a code line']}];
+      this.allProblems = [];
 
   
   }
@@ -86,10 +77,11 @@ class ParsonsStore {
   }
 
   handleGetProblems() {
-    this.emitChange();
+  
   }
 
   handleGetProblemsSuccess(data) {
+    console.log(data);
     this.allProblems = data;
     this.emitChange();
   }
