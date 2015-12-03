@@ -41,7 +41,7 @@ exports.getAllProblems = function(req, res, next) {
 
   //get single problem by problem ID
 exports.getParsonsProblem = function(req, res, next) {
-	var id = req.body.id;
+	var id = req.params.id;
 	ParsonsProblem.findById(id, function(err, problem) {
 		if(!err) {
 			res.json(problem);

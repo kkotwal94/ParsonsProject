@@ -1,15 +1,41 @@
 import React from 'react';
 import {Link} from 'react-router';
-
+import ParsonsStore from 'stores/ParsonsStore';
+import ParsonsActions from 'actions/ParsonsActions';
+import UserActions from 'actions/UserActions';
+import UserStore from 'stores/UserStore';
+import Immutable from 'immutable';
 
 export default class RProblem extends React.Component {
 
-  constructor(props){
+ constructor(props) {
     super(props);
+    this.state = ParsonsStore.getState();
+  }
+
+  componentDidMount() {
+    ParsonsActions.getParsonsProblem(this.props.params.id);
+    UserStore.listen(this._onChange);
+    ParsonsStore.listen(this._onChange);
+    }
+  
+
+  componentWillUnmount() {
+    UserStore.unlisten(this._onChange);
+    ParsonsStore.unlisten(this._onChange);
+  }
+
+  _onChange = () => {
+    this.setState({
+      //user: UserStore.getState().user,
+      //allProblems: ParsonsStore.getState().allProblems
+      singleProblem: ParsonsStore.getState().singleProblem
+    });
   }
 
   render() {
     console.log(this.props.params.id);
+    console.log(this.state.singleProblem);
     return (
       <div>
       <div className ="container-fluid">

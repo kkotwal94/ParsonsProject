@@ -35,7 +35,7 @@ module.exports = function(app, passport) {
     problem.getAllProblems(req, res);
   });
 
-   app.get('/getParsonsProblem', function(req, res) {
+   app.get('/getParsonsProblem/:id', function(req, res) {
     problem.getParsonsProblem(req, res);
   });
 

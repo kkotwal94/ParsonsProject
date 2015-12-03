@@ -31,11 +31,6 @@ export default class RandomProblem extends React.Component {
     });
   }
 
-  _onGoToProblem = () => {
-   console.log("Should be heading to the problem page. Update this logic.");
-  }
-
-
   render() {
     console.log(this.state.allProblems);
     let allProblems = this.state.allProblems;
