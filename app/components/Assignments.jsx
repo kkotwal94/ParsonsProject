@@ -67,7 +67,7 @@ export default class Assignments extends React.Component {
                                 <td>{ass.description}</td>
                                 <td>{ass.score}</td>
                               </tr>
-                              )};
+                              )}
                             </tbody>
                           </table>
                         </div>
