@@ -52,6 +52,15 @@ export default class Assignments extends React.Component {
                             </li>
                         </ol>
                         <div className="container">
+
+                        <ul className="nav nav-tabs" role="tablist">
+                          <li role="presentation" className="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Assignments List</a></li>
+                          <li role="presentation"><a href="#create" aria-controls="create" role="tab" data-toggle="tab">Create Assignments</a></li>
+                          <li role="presentation"><a href="#edit" aria-controls="edit" role="tab" data-toggle="tab">Edit/Set Assignment</a></li>
+                        </ul>
+
+                        <div className="tab-content">
+                        <div role="tabpanel" className="tab-pane active" id="home">
                           <h2>Current Assignments</h2>
                           <p>Below you will find a listing of your current assignments.</p>            
                           <table className="table table-hover">
@@ -73,7 +82,17 @@ export default class Assignments extends React.Component {
                             </tbody>
                           </table>
                         </div>
+
+                         <div role="tabpanel" className="tab-pane" id="create">
+                          <h2>Creating assignment here</h2>
+                         </div>
+
+                          <div role="tabpanel" className="tab-pane" id="edit">
+                          <h2>Editing assignment here</h2>
+                         </div>
                     </div>
+                </div>
+                </div>
                 </div>
           </div>
             
