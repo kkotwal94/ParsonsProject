@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 // Other oauthtypes to be added
 
 /*
- Problem Schema
+ Assignment Schema
  */
 
 var AssignmentsSchema = new mongoose.Schema({

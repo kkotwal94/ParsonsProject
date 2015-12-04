@@ -60,11 +60,11 @@ module.exports = function(app, passport) {
     assignment.updateAssignment(req, res);
   });
   
-  app.post('/getAssignment', function(req, res, next) {
+  app.get('/getAssignment/:id', function(req, res, next) {
     assignment.getAssignment(req, res, next);
   });
 
-  app.post('/getAllAssignments', function(req, res, next) {
+  app.get('/getAllAssignments', function(req, res, next) {
     assignment.getAllAssignments(req, res, next);
   });
 
@@ -81,7 +81,7 @@ module.exports = function(app, passport) {
     feedback.updateFeedback(req, res);
   });
 
-  app.post('/getFeedback', function(req, res, next) {
+  app.get('/getFeedback', function(req, res, next) {
     feedback.getFeedback(req, res, next);
   });
   // google auth

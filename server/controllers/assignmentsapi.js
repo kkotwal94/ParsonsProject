@@ -9,7 +9,7 @@ var UserProblemPair = require('../models/userproblempair');
 
 //get single assignment
 exports.getAssignment = function(req, res, next) {
-	var id = req.body.id;
+	var id = req.params.id;
 	assignments.findById(id, function(err, assignment) {
 		if(!err) {
 			res.json(assignment);

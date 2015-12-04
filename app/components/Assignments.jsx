@@ -3,13 +3,13 @@ import {Link} from 'react-router';
 import UserActions from 'actions/UserActions';
 import UserStore from 'stores/UserStore';
 import Immutable from 'immutable';
+import AssignmentsActions from 'actions/AssignmentsActions';
 import AssignmentsStore from 'stores/AssignmentsStore';
 
 export default class Assignments extends React.Component {
     constructor(props) {
     super(props);
-    this.state = UserStore.getState();
-    this.states = AssignmentsStore.getState()
+    this.state = AssignmentsStore.getState();
   }
 
   componentDidMount() {
@@ -20,6 +20,7 @@ export default class Assignments extends React.Component {
   componentWillUnmount() {
     UserStore.unlisten(this._onChange);
     AssignmentsStore.unlisten(this._onChange);
+    AssignmentsActions.getAllAssignments();
   }
 
   _onChange = () => {
@@ -31,7 +32,8 @@ export default class Assignments extends React.Component {
 
 
   render() {
-    let allAssignments = this.states.allAssignments;
+    let allAssignments = this.state.allAssignments;
+    console.log(allAssignments);
     return (
       <div>
       <div className ="container-fluid">

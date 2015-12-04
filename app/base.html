@@ -25,19 +25,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>
-<script>
-$.getJSON("https://bootswatch.com/api/3.json", function (data) {
-  var themes = data.themes;
-  console.log(themes);
-   //var theme = themes[];
-    //$("link").attr("href", theme.css);
-    //$("h1").text(theme.name);
-  }).change();
-
-}, "json").fail(function(){
-    $(".alert").toggleClass("alert-info alert-danger");
-    $(".alert h4").text("Failure!");
-});
-</script>
 </body>
 </html>

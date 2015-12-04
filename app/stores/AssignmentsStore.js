@@ -37,6 +37,7 @@ class AssignmentsStore {
     // then update them directly in the prototype methods
     this.assignments = []; //our currently created parsons problems
     this.allAssignments = [];
+    this.singleAssignment = [];
     // Do not think we need an Immutable object here
 
     // (lifecycleMethod: string, handler: function): undefined
@@ -52,7 +53,10 @@ class AssignmentsStore {
       handleCreateAssignmentSuccess: AssignmentsActions.CREATE_ASSIGNMENT_SUCCESS,
       handleGetAssignments: AssignmentsActions.GET_ALL_ASSIGNMENTS,
       handleGetAssignmentsSuccess: AssignmentsActions.GET_ALL_ASSIGNMENTS_SUCCESS,
-      handleGetAssignmentsError: AssignmentsActions.GET_ALL_ASSIGNMENTS_ERROR
+      handleGetAssignmentsError: AssignmentsActions.GET_ALL_ASSIGNMENTS_ERROR,
+      handleGetSingleAssignment: AssignmentsActions.GET_ASSIGNMENT,
+      handleGetSingleAssignmentSuccess: AssignmentsActions.GET_ASSIGNMENT_SUCCESS,
+      handleGetSingleAssignmentError: AssignmentsActions.GET_ASSIGNMENT_ERROR
     });
   }
 
@@ -78,7 +82,7 @@ class AssignmentsStore {
   }
 
   handleCreateAssignmentSuccess(data){
-    this.parsons = data;
+    this.assignments = data;
     this.emitChange();
   }
 
@@ -92,6 +96,19 @@ class AssignmentsStore {
   }
 
   handleGetAssignmentsError(error) {
+    this.emitChange(error);
+  }
+
+  handleGetSingleAssignment() {
+    this.emitChange();
+  }
+
+  handleGetSingleAssignmentSuccess(data) {
+    this.singleAssignment = data;
+    this.emitChange();
+  }
+
+  handleGetSingleAssignmentError(error){
     this.emitChange(error);
   }
 
