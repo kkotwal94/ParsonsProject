@@ -49,10 +49,10 @@ export default class Assignments extends React.Component {
                             Assignments
                             </li>
                         </ol>
-                        <div class="container">
+                        <div className="container">
                           <h2>Current Assignments</h2>
                           <p>Below you will find a listing of your current assignments.</p>            
-                          <table class="table table-hover">
+                          <table className="table table-hover">
                             <thead>
                               <tr>
                                 <th>Title</th>

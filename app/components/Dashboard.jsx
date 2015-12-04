@@ -42,7 +42,7 @@ export default class Dashboard extends React.Component {
      
 
     <div className={styles['wrapper']}>
-      <p className = "helloworld">Hello test</p>
+      <p className = "helloworld">{"Hello " + firstName + " " + lastName}</p>
         
         <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
            
