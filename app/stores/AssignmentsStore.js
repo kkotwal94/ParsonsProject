@@ -1,7 +1,8 @@
 import Immutable from 'immutable';
-import ParsonsActions from 'actions/ParsonsActions';
+import AssignmentsActions from 'actions/AssignmentsActions';
 import { fromJSOrdered } from 'utils/immutableHelpers';
 import alt from 'altInstance';
+
 
 /**
  * Flux Explanation of Store:
@@ -25,7 +26,7 @@ import alt from 'altInstance';
  * the methods in the constructor using StoreModel#exportPublicMethods.
  *
  */
-class ParsonsStore {
+class AssignmentsStore {
 
   /*
    * The constructor of your store definition receives the alt instance as its first and only argument. All instance variables,
@@ -34,9 +35,8 @@ class ParsonsStore {
   constructor() {
     // Instance variables defined anywhere in the store will become the state. You can initialize these in the constructor and
     // then update them directly in the prototype methods
-    this.parsons = []; //our currently created parsons problems
-    this.allParsons = Immutable.Map({}); //should be all the parsons problems that exist
-    this.allProblems = [];
+    this.assignments = []; //our currently created parsons problems
+    this.allAssignments = [];
     // Do not think we need an Immutable object here
 
     // (lifecycleMethod: string, handler: function): undefined
@@ -48,57 +48,54 @@ class ParsonsStore {
     // StoreModel and the values can either be an array of action symbols or a single action symbol.
     // Remember: alt generates uppercase constants for us to reference
     this.bindListeners({
-      handleCreateProblem: ParsonsActions.CREATE_PROBLEM,
-      handleCreateProblemSuccess: ParsonsActions.CREATE_PROBLEM_SUCCESS,
-      handleGetProblems: ParsonsActions.GET_ALL_PROBLEMS,
-      handleGetProblemsSuccess: ParsonsActions.GET_ALL_PROBLEMS_SUCCESS,
-      handleGetProblemsError: ParsonsActions.GET_ALL_PROBLEMS_ERROR
+      handleCreateAssignment: AssignmentsActions.CREATE_ASSIGNMENT,
+      handleCreateAssignmentSuccess: AssignmentsActions.CREATE_ASSIGNMENT_SUCCESS,
+      handleGetAssignments: AssignmentsActions.GET_ALL_ASSIGNMENTS,
+      handleGetAssignmentsSuccess: AssignmentsActions.GET_ALL_ASSIGNMENTS_SUCCESS,
+      handleGetAssignmentsError: AssignmentsActions.GET_ALL_ASSIGNMENTS_ERROR
     });
   }
 
   bootstrap() {
-    if (!Immutable.Map.isMap(this.allParsons)) {
-      this.allParsons = Immutable.fromJS(this.allParsons);
-    }
-      this.parsons = [];
-      this.allProblems = [{'_id' : '1234', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1235', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1236', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1237', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1238', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1239', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1240', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1241', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1242', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []}, 
-      {'_id' : '2343', 'title' : 'Poopymcboogerbutt2', 'description' : 'Its a poopy problems', 'codelines': ['a code line']}];
+      this.assignments = [];
+      this.allAssignments = [{'_id' : '1234', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy assignment', 'assignment': []},
+      {'_id' : '1235', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy assignment', 'assignment': []},
+      {'_id' : '1236', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy assignment', 'assignment': []},
+      {'_id' : '1237', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy assignment', 'assignment': []},
+      {'_id' : '1238', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy assignment', 'assignment': []},
+      {'_id' : '1239', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy assignment', 'assignment': []},
+      {'_id' : '1240', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy assignment', 'assignment': []},
+      {'_id' : '1241', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy assignment', 'assignment': []},
+      {'_id' : '1242', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy assignment', 'assignment': []}, 
+      {'_id' : '2343', 'title' : 'Poopymcboogerbutt2', 'description' : 'Its a poopy assignment', 'assignment': []}];
 
   
   }
   
-  handleCreateProblem(){
+  handleCreateAssignment(){
     
     this.emitChange();
   }
 
-  handleCreateProblemSuccess(data){
+  handleCreateAssignmentSuccess(data){
     this.parsons = data;
     this.emitChange();
   }
 
-  handleGetProblems() {
+  handleGetAssignments() {
     this.emitChange();
   }
 
-  handleGetProblemsSuccess(data) {
-    this.allProblems = data;
+  handleGetAssignmentsSuccess(data) {
+    this.allAssignments = data;
     this.emitChange();
   }
 
-  handleGetProblemsError(error) {
+  handleGetAssignmentsError(error) {
     this.emitChange(error);
   }
 
 }
 
 // Export our newly created Store
-export default alt.createStore(ParsonsStore, 'ParsonsStore');
+export default alt.createStore(AssignmentsStore, 'AssignmentsStore');
