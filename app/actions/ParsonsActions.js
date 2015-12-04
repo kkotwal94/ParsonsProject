@@ -39,6 +39,23 @@ class ParsonsActions {
       this.dispatch(error);
     }
 
+    getParsonsProblem(id) {
+      this.dispatch();
+      ParsonsWebAPIUtils.getParsonsProblem(id).done((data) => {
+        this.actions.getParsonsProblemSuccess(data);
+      })
+      .fail((errorMessage) => {
+        this.actions.getParsonsProblemError(errorMessage);
+      });
+    }
+
+    getParsonsProblemSuccess(data) {
+      this.dispatch(data);
+    }
+
+    getParsonsProblemError(error) {
+      this.dispatch(error);
+    }
 }
 
 export default alt.createActions(ParsonsActions);

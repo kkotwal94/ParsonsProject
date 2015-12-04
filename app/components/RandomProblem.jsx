@@ -3,16 +3,17 @@ import {Link} from 'react-router';
 import UserActions from 'actions/UserActions';
 import UserStore from 'stores/UserStore';
 import ParsonsStore from 'stores/ParsonsStore';
+import ParsonsActions from 'actions/ParsonsActions';
 import Immutable from 'immutable';
 
 export default class RandomProblem extends React.Component {
     constructor(props) {
     super(props);
-    this.state = UserStore.getState();
-    this.states = ParsonsStore.getState();
+    this.state = ParsonsStore.getState();
   }
 
   componentDidMount() {
+    ParsonsActions.getAllProblems();
     UserStore.listen(this._onChange);
     ParsonsStore.listen(this._onChange);
     }
@@ -25,19 +26,14 @@ export default class RandomProblem extends React.Component {
 
   _onChange = () => {
     this.setState({
-      user: UserStore.getState().user,
-      allProblems: ReportStore.getState().allProblems
+      //user: UserStore.getState().user,
+      allProblems: ParsonsStore.getState().allProblems
     });
   }
 
-  _onGoToProblem = () => {
-   console.log("Should be heading to the problem page. Update this logic.");
-  }
-
-
   render() {
-    console.log(this.states.allProblems);
-    let allProblems = this.states.allProblems;
+    console.log(this.state.allProblems);
+    let allProblems = this.state.allProblems;
     return (
       <div>
       <div className ="container-fluid">
@@ -74,7 +70,7 @@ export default class RandomProblem extends React.Component {
                               <div className="panel-body">
                               <p>{prob.description}</p>
                               <p>{prob._id}</p>
-                              <button className="btn btn-primary" onClick={this._onGoToProblem}>Try it!</button>
+                              <Link to={'/dashboard/randomproblem/' + prob._id}><button className="btn btn-primary">Try it!</button></Link>
                               </div>
                           </div>
                           </div>

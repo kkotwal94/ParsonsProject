@@ -37,6 +37,7 @@ class ParsonsStore {
     this.parsons = []; //our currently created parsons problems
     this.allParsons = Immutable.Map({}); //should be all the parsons problems that exist
     this.allProblems = [];
+    this.singleProblem = [];
     // Do not think we need an Immutable object here
 
     // (lifecycleMethod: string, handler: function): undefined
@@ -52,7 +53,10 @@ class ParsonsStore {
       handleCreateProblemSuccess: ParsonsActions.CREATE_PROBLEM_SUCCESS,
       handleGetProblems: ParsonsActions.GET_ALL_PROBLEMS,
       handleGetProblemsSuccess: ParsonsActions.GET_ALL_PROBLEMS_SUCCESS,
-      handleGetProblemsError: ParsonsActions.GET_ALL_PROBLEMS_ERROR
+      handleGetProblemsError: ParsonsActions.GET_ALL_PROBLEMS_ERROR,
+      handleGetParsonsProblem: ParsonsActions.GET_PARSONS_PROBLEM,
+      handleGetParsonsProblemSuccess: ParsonsActions.GET_PARSONS_PROBLEM_SUCCESS,
+      handleGetParsonsProblemError: ParsonsActions.GET_PARSONS_PROBLEM_ERROR
     });
   }
 
@@ -61,16 +65,7 @@ class ParsonsStore {
       this.allParsons = Immutable.fromJS(this.allParsons);
     }
       this.parsons = [];
-      this.allProblems = [{'_id' : '1234', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1235', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1236', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1237', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1238', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1239', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1240', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1241', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []},
-      {'_id' : '1242', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy problem', 'codelines': []}, 
-      {'_id' : '2343', 'title' : 'Poopymcboogerbutt2', 'description' : 'Its a poopy problems', 'codelines': ['a code line']}];
+      this.allProblems = [];
 
   
   }
@@ -86,15 +81,29 @@ class ParsonsStore {
   }
 
   handleGetProblems() {
-    this.emitChange();
+  this.emitChange();
   }
 
   handleGetProblemsSuccess(data) {
+    console.log(data);
     this.allProblems = data;
     this.emitChange();
   }
 
   handleGetProblemsError(error) {
+    this.emitChange(error);
+  }
+
+  handleGetParsonsProblem() {
+    this.emitChange();
+  }
+
+  handleGetParsonsProblemSuccess(data) {
+    this.singleProblem = data;
+    this.emitChange();
+  }
+
+  handleGetParsonsProblemError(error) {
     this.emitChange(error);
   }
 

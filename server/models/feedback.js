@@ -10,7 +10,8 @@ var mongoose = require('mongoose');
  */
 
 var FeedbackSchema = new mongoose.Schema({
-  description: {type: String, default: ''}
+  lineFeedback: [{type: String, default: ''}],
+  parsonsProblemReferencef: [{type: mongoose.Schema.Types.ObjectId, ref: 'ParsonsProblem'}]
 });
 
 

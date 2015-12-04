@@ -35,7 +35,7 @@ module.exports = function(app, passport) {
     problem.getAllProblems(req, res);
   });
 
-   app.get('/getParsonsProblem', function(req, res) {
+   app.get('/getParsonsProblem/:id', function(req, res) {
     problem.getParsonsProblem(req, res);
   });
 
@@ -53,11 +53,36 @@ module.exports = function(app, passport) {
   });
 
   app.post('/deleteAssignment', function(req, res) {
-    assignment.deleteAssignment(req, res)
+    assignment.deleteAssignment(req, res);
   });
 
   app.post('/updateAssignment', function(req, res) {
-    assignment.updateAssignment(req, res)
+    assignment.updateAssignment(req, res);
+  });
+  
+  app.post('/getAssignment', function(req, res, next) {
+    assignment.getAssignment(req, res, next);
+  });
+
+  app.post('/getAllAssignments', function(req, res, next) {
+    assignment.getAllAssignments(req, res, next);
+  });
+
+
+  app.post('/createFeedback', function(req, res, next) {
+    feedback.createFeedback(req, res, next);
+  });
+
+  app.post('/deleteFeedback', function(req, res) {
+    feedback.deleteFeedback(req, res);
+  });
+
+  app.post('/updateFeedback', function(req, res) {
+    feedback.updateFeedback(req, res);
+  });
+
+  app.post('/getFeedback', function(req, res, next) {
+    feedback.getFeedback(req, res, next);
   });
   // google auth
   // Redirect the user to Google for authentication. When complete, Google

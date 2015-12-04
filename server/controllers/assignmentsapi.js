@@ -102,4 +102,3 @@ exports.updateAssignment = function(req, res) {
 	});
 
 };
->>>>>>> 31595f7a00a4a50c699b0c5184819ed059c0e8ee

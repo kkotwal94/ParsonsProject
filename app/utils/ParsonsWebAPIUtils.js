@@ -18,7 +18,16 @@ const utils = {
   			crossDomain: true,
   			cache: false
   		});
-  	}
+  	},
+
+    getParsonsProblem: (id) => {
+      return $.ajax({
+        url: '/getParsonsProblem/' + id,
+        type: 'GET',
+        crossDomain: true,
+        cache: false
+    });
+  }
 
 
 };
