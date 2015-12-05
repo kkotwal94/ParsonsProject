@@ -25,6 +25,21 @@ import alt from 'altInstance';
  * the methods in the constructor using StoreModel#exportPublicMethods.
  *
  */
+
+ let _shuffle = (array) => {
+  let arr2 = [];
+  for(let i = 0; i < array.length; i++) {
+    arr2[i] = array[i];
+  }
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        let temp = arr2[i];
+        arr2[i] = arr2[j];
+        arr2[j] = temp;
+    }
+    return arr2;
+ }
+
 class ParsonsStore {
 
   /*
@@ -38,6 +53,8 @@ class ParsonsStore {
     this.allParsons = Immutable.Map({}); //should be all the parsons problems that exist
     this.allProblems = [];
     this.singleProblem = [];
+    this.randomProblem = [];
+    this.source = 7;
     // Do not think we need an Immutable object here
 
     // (lifecycleMethod: string, handler: function): undefined
@@ -56,7 +73,9 @@ class ParsonsStore {
       handleGetProblemsError: ParsonsActions.GET_ALL_PROBLEMS_ERROR,
       handleGetParsonsProblem: ParsonsActions.GET_PARSONS_PROBLEM,
       handleGetParsonsProblemSuccess: ParsonsActions.GET_PARSONS_PROBLEM_SUCCESS,
-      handleGetParsonsProblemError: ParsonsActions.GET_PARSONS_PROBLEM_ERROR
+      handleGetParsonsProblemError: ParsonsActions.GET_PARSONS_PROBLEM_ERROR,
+      sendSourceData: ParsonsActions.SEND_SOURCE_DATA,
+      updateRandomArray: ParsonsActions.UPDATE_RANDOM_ARRAY
     });
   }
 
@@ -100,11 +119,24 @@ class ParsonsStore {
 
   handleGetParsonsProblemSuccess(data) {
     this.singleProblem = data;
+    this.randomProblem = _shuffle(this.singleProblem.problem);
+
     this.emitChange();
   }
 
   handleGetParsonsProblemError(error) {
     this.emitChange(error);
+  }
+
+  sendSourceData(data) {
+    this.source = data;
+    console.log("Source Location: " + this.source);
+    this.emitChange();
+  }
+
+  updateRandomArray(data) {
+    this.randomArray = data;
+    this.emitChange();
   }
 
 }

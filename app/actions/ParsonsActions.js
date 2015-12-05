@@ -56,6 +56,15 @@ class ParsonsActions {
     getParsonsProblemError(error) {
       this.dispatch(error);
     }
+
+    sendSourceData(data) {
+      this.dispatch(data);
+    }
+
+    updateRandomArray(data) {
+      this.dispatch(data);
+      console.log(data);
+    }
 }
 
 export default alt.createActions(ParsonsActions);

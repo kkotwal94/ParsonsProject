@@ -2,6 +2,8 @@ import React from 'react';
 import AltContainer from 'alt/AltContainer';
 import UserStore from 'stores/UserStore';
 let injectTapEventPlugin = require('react-tap-event-plugin');
+import HTML5Backend from 'react-dnd-html5-backend';
+import {DragDropContext} from 'react-dnd';
 injectTapEventPlugin();
 import 'scss/main';
 
@@ -20,6 +22,7 @@ import 'scss/main';
  * We often pass the entire state of the store down the chain of views in a single object, allowing different descendants to use
  * what they need. In addition to keeping the controller-like behavior at the top of the hierarchy, and thus keeping our descendant
  */
+ @DragDropContext(HTML5Backend)
 export default class App extends React.Component {
 
   /*childContextTypes : {

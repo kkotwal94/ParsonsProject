@@ -5,6 +5,9 @@ import ParsonsActions from 'actions/ParsonsActions';
 import UserActions from 'actions/UserActions';
 import UserStore from 'stores/UserStore';
 import Immutable from 'immutable';
+import CodeLine from './CodeLine.jsx';
+import Grid from './Grid.jsx';
+import GridSpace from './GridSpace.jsx';
 
 export default class RProblem extends React.Component {
 
@@ -29,13 +32,29 @@ export default class RProblem extends React.Component {
     this.setState({
       //user: UserStore.getState().user,
       //allProblems: ParsonsStore.getState().allProblems
-      singleProblem: ParsonsStore.getState().singleProblem
+      singleProblem: ParsonsStore.getState().singleProblem,
+      randomProblem: ParsonsStore.getState().randomProblem,
+      source : ParsonsStore.getState().source
     });
   }
 
   render() {
-    console.log(this.props.params.id);
-    console.log(this.state.singleProblem);
+    let singleProblem = [];
+    let correctArray = [];
+    let randomArray = [];
+    let gridSize = 0;
+    let source = this.state.source;
+   // console.log(source);
+    if(this.state.singleProblem.length !== 0) {
+      singleProblem = this.state.singleProblem.problem;
+      correctArray = singleProblem;//correctArray = this.state.correctProblem.problem;
+      randomArray = this.state.randomProblem;
+      gridSize = singleProblem.length;
+     
+    }
+    //console.log("Original Problem " + singleProblem);
+    //console.log("Correct problem array " + correctArray);
+    //console.log("Random Problem array " + randomArray);
     return (
       <div>
       <div className ="container-fluid">
@@ -56,6 +75,7 @@ export default class RProblem extends React.Component {
                         </ol>
                         <div>
                         Where random problem should be should be : {this.props.params.id}
+                        <Grid gridSize = {gridSize} id = {1} correctArray = {singleProblem} randomArray ={randomArray}/>
                         </div>
                     </div>
                 </div>
