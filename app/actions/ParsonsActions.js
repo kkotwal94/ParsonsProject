@@ -65,6 +65,10 @@ class ParsonsActions {
       this.dispatch(data);
       console.log(data);
     }
+
+    checkSolution() {
+      this.dispatch();
+    }
 }
 
 export default alt.createActions(ParsonsActions);

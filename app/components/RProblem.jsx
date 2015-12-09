@@ -12,6 +12,7 @@ export default class RProblem extends React.Component {
  constructor(props) {
     super(props);
     this.state = ParsonsStore.getState();
+    this.state.correct = undefined;
   }
 
   componentDidMount() {
@@ -32,35 +33,58 @@ export default class RProblem extends React.Component {
       //allProblems: ParsonsStore.getState().allProblems
       singleProblem: ParsonsStore.getState().singleProblem,
       randomProblem: ParsonsStore.getState().randomProblem,
-      source : ParsonsStore.getState().source
+      correct: ParsonsStore.getState().correct
     });
   }
 
-  render() {
+  _onCheckSolution = () => {
+    ParsonsActions.checkSolution();
+  }
 
+
+  render() {
     if(!this.state.randomProblem) {
       return null;
     }
 
-    let singleProblem = [];
+    let singleProblem = [{title: 'Title', description: 'Test'}];
     let correctArray = [];
     let randomArray = [];
-    let poopoo = [1, 2, 3, 4];
-    let gridSize = 0;
-    let source = this.state.source;
+    
    // console.log(source);
     if(this.state.randomProblem.length !== 0) {
-      singleProblem = this.state.singleProblem.problem;
+      singleProblem = this.state.singleProblem;
       correctArray = singleProblem;//correctArray = this.state.correctProblem.problem;
       randomArray = this.state.randomProblem;
-      gridSize = singleProblem.length;
-     
-    }
-    //console.log("Original Problem " + singleProblem);
-    //console.log("Correct problem array " + correctArray);
-    //console.log("Random Problem array " + randomArray);
+      //gridSize = singleProblem.length;
+     }
     console.log("randomArray: " + randomArray);
-    console.log(poopoo);
+    if(this.state.correct == undefined) {
+      console.log("Not loaded yet");
+    } else {
+    console.log(this.state.correct);
+    }
+
+    let styles = {
+      alert1: {
+        display: 'none'
+      },
+
+      alert2: {
+        display: 'none'
+      }
+    }
+
+    if(this.state.correct == true) {
+      styles.alert1.display = 'inherit';
+      styles.alert2.display = 'none';
+    }
+
+    if(this.state.correct == false) {
+      styles.alert1.display= 'none';
+      styles.alert2.display= 'inherit';
+    }
+    
     return (
       <div>
       <div className ="container-fluid">
@@ -76,18 +100,24 @@ export default class RProblem extends React.Component {
                             </li>
                             <li>
                             
-                            Problem: {this.props.params.id}
+                            Problem: {singleProblem.title}
                             </li>
                         </ol>
                         <div>
-                        Where random problem should be should be : {this.props.params.id}
+                        <div className="alert alert-success" role="alert" style={styles.alert1}>Great! You got the problem corect!</div>
+                        <div className="alert alert-danger" role="alert" style={styles.alert2}>The solution submitted was incorrected! Try again!</div>
+                        </div>
+                        <div>
+                        <h1>{singleProblem.title}</h1>
+                        <h3>{singleProblem.description}</h3>
                         <Container array = {randomArray}/>
                         
                         </div>
                     </div>
                 </div>
+                <button className = "btn btn-primary" onClick={this._onCheckSolution}>Submit</button>
           </div>
-            
+          
         </div>
 
     );

@@ -40,6 +40,16 @@ import alt from 'altInstance';
     return arr2;
  }
 
+ let _checkCorrect = (singleProblem, randomProblem) => {
+
+    for(let i = 0; i < singleProblem.problem.length; i++) {
+      if(singleProblem.problem[i] != randomProblem[i].text) {
+        return false;
+      }
+    }
+    return true;
+ }
+
 
 
 class ParsonsStore {
@@ -58,6 +68,7 @@ class ParsonsStore {
     this.randomProblem = [];
     this.randomProblem2 = [];
     this.source = 7;
+    this.correct;
     // Do not think we need an Immutable object here
 
     // (lifecycleMethod: string, handler: function): undefined
@@ -78,7 +89,8 @@ class ParsonsStore {
       handleGetParsonsProblemSuccess: ParsonsActions.GET_PARSONS_PROBLEM_SUCCESS,
       handleGetParsonsProblemError: ParsonsActions.GET_PARSONS_PROBLEM_ERROR,
       sendSourceData: ParsonsActions.SEND_SOURCE_DATA,
-      updateRandomArray: ParsonsActions.UPDATE_RANDOM_ARRAY
+      updateRandomArray: ParsonsActions.UPDATE_RANDOM_ARRAY,
+      checkSolution: ParsonsActions.CHECK_SOLUTION
     });
   }
 
@@ -88,7 +100,8 @@ class ParsonsStore {
     }
       this.parsons = this.ParsonsActions;
       this.allProblems = this.allProblems;
-      this.randomProblem = this.randomProblem;
+      this.correct;
+      //this.randomProblem = this.randomProblem;
 
   
   }
@@ -124,6 +137,7 @@ class ParsonsStore {
   handleGetParsonsProblemSuccess(data) {
     this.singleProblem = data;
     //console.log(this.singleProblem);
+    this.randomProblem = [];
     for(let i = 0; i < this.singleProblem.problem.length; i++) {
       this.randomProblem.push({id: i, text: this.singleProblem.problem[i]});
     }
@@ -145,6 +159,12 @@ class ParsonsStore {
   updateRandomArray(data) {
     this.randomArray = data;
     this.emitChange();
+  }
+
+  checkSolution() {
+  this.correct = '';
+  this.correct = _checkCorrect(this.singleProblem, this.randomProblem);
+  this.emitChange();
   }
 
 }
