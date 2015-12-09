@@ -30,6 +30,7 @@ var UserSchema = new mongoose.Schema({
   google: {},
   problemPair: [{type: mongoose.Schema.Types.ObjectId, ref: 'UserProblemPair'}],
   isStaff : { type: Boolean, default: false},
+  assignmentsCreated : [{type: mongoose.Schema.Types.ObjectId, ref: 'Assignments'}],
   assignmentsCompleted: [{type: mongoose.Schema.Types.ObjectId, ref: 'Assignments'}],
   problemsCompleted: [{type: mongoose.Schema.Types.ObjectId, ref: 'ParsonsProblem'}]
 });

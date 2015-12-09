@@ -5,6 +5,7 @@ import UserStore from 'stores/UserStore';
 import Immutable from 'immutable';
 import AssignmentsActions from 'actions/AssignmentsActions';
 import AssignmentsStore from 'stores/AssignmentsStore';
+import CreateAssignments from './CreateAssignments';
 
 export default class Assignments extends React.Component {
     constructor(props) {
@@ -13,6 +14,7 @@ export default class Assignments extends React.Component {
   }
 
   componentDidMount() {
+    AssignmentsActions.getAllAssignments();
     UserStore.listen(this._onChange);
     AssignmentsStore.listen(this._onChange);
   }
@@ -20,7 +22,6 @@ export default class Assignments extends React.Component {
   componentWillUnmount() {
     UserStore.unlisten(this._onChange);
     AssignmentsStore.unlisten(this._onChange);
-    AssignmentsActions.getAllAssignments();
   }
 
   _onChange = () => {
@@ -84,7 +85,7 @@ export default class Assignments extends React.Component {
                         </div>
 
                          <div role="tabpanel" className="tab-pane" id="create">
-                          <h2>Creating assignment here</h2>
+                          <CreateAssignments />
                          </div>
 
                           <div role="tabpanel" className="tab-pane" id="edit">

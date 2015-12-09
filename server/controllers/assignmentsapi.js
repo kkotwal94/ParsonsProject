@@ -4,6 +4,7 @@ var passport = require('passport');
 var ParsonsProblem = require('../models/parsonsproblem');
 var Feedback = require('../models/feedback');
 var UserProblemPair = require('../models/userproblempair');
+var assignments = require('../models/assignments');
 
 //POST GET API for assigments
 
@@ -37,16 +38,16 @@ exports.createAssignment = function(req, res, next) {
 	console.log(req.body);
 	var title = req.body.title;
 	var description = req.body.description;
-	var assignment = req.body.assignment;
-	var createdByAdmin = req.body.createdByAdmin;
-	var score = req.body.score;
-	var newAssignment = new assigments(req.body);
-	for (var i = 0; i < assignment.length; i++) {
-		if (assignment[i] != "") {
-			newAssignment.assignment.push(assignment[i]);
-		}
-	}
-	newAssignment.save();
+	//var assignment = req.body.assignment;
+	//var createdByAdmin = req.body.createdByAdmin;
+	var newAssignment = new assignments(req.body);
+	
+	User.findById(req.body.id, function(err, user) {
+		newAssignment.ownedBy = user;
+		user.assignmentsCreated.push(newAssignment);
+		user.save();
+		newAssignment.save();
+	});
 	console.log(newAssignment);
 	res.json(req.body);
 }

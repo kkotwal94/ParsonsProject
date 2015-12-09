@@ -61,8 +61,8 @@ class AssignmentsStore {
   }
 
   bootstrap() {
-      this.assignments = [];
-      this.allAssignments = [{'_id' : '1234', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy assignment', 'assignment': []},
+      //this.assignments = [];
+      /*this.allAssignments = [{'_id' : '1234', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy assignment', 'assignment': []},
       {'_id' : '1235', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy assignment', 'assignment': []},
       {'_id' : '1236', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy assignment', 'assignment': []},
       {'_id' : '1237', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy assignment', 'assignment': []},
@@ -72,7 +72,7 @@ class AssignmentsStore {
       {'_id' : '1241', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy assignment', 'assignment': []},
       {'_id' : '1242', 'title' : 'Poopymcboogerbutt', 'description' : 'Its a poopy assignment', 'assignment': []}, 
       {'_id' : '2343', 'title' : 'Poopymcboogerbutt2', 'description' : 'Its a poopy assignment', 'assignment': []}];
-
+*/
   
   }
   

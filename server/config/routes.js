@@ -12,7 +12,7 @@ var _ = require('lodash');
 var Header = require('../../public/assets/header.server');
 var App = require('../../public/assets/app.server');
 
-module.exports = function(app, passport) {
+module.exports = function(app, io, passport) {
   // user routes
   app.post('/login', users.postLogin);  
   app.post('/signup', users.postSignUp);
@@ -113,9 +113,9 @@ module.exports = function(app, passport) {
     
        
         // We don't want to be seeding and generating markup with user information
-        console.log("Before we change: " + req.user);
+        //console.log("Before we change: " + req.user);
         var user = req.user ? {authenticated: true, isWaiting: false, email: req.user.email, id: req.user._id, profile: req.user.profile, problems: req.user.problemPair, isStaff: req.user.isStaff} : { authenticated: false, isWaiting: false };
-        console.log("After the change: " + req.user);
+        //console.log("After the change: " + req.user);
         // An object that contains response local variables scoped to the request, and therefore available only to the view(s) rendered during
         // that request/response cycle (if any). Otherwise, this property is identical to app.locals
         // This property is useful for exposing request-level information such as request path name, authenticated user, user settings, and so on.
@@ -145,4 +145,16 @@ module.exports = function(app, passport) {
     res.end(html);
   });
 
+
+  io.on('connection', function(socket) {
+    console.log("User has connected");
+    socket.emit('news', { hello: 'world'});
+    socket.on('my other event', function(data) {
+      console.log(data);
+    })
+
+    socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+  });
 };;

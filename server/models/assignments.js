@@ -14,6 +14,7 @@ var AssignmentsSchema = new mongoose.Schema({
   description: {type: String, default: ''},
   assignment: [{type: mongoose.Schema.Types.ObjectId, ref: 'ParsonsProblem'}],
   createdByAdmin: {type: Boolean, default: false},
+  ownedBy: {type:mongoose.Schema.Types.ObjectId, ref: 'User'},
   score: {type:Number, default: 0}
   
 });

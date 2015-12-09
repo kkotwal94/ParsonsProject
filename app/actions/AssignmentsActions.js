@@ -7,6 +7,7 @@ class AssignmentsActions {
 
 	createAssignment(data) {
 		this.dispatch();
+    console.log(data);
 		AssignmentsWebAPIUtils.createAssignment(data)
 		.then((response, textStatus) => {
          	if(textStatus === 'success'){
