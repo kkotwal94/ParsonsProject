@@ -1,6 +1,8 @@
 import React from 'react';
 import AltContainer from 'alt/AltContainer';
 import UserStore from 'stores/UserStore';
+import ParsonsStore from 'stores/ParsonsStore';
+import AssignmentsStore from 'stores/AssignmentsStore';
 let injectTapEventPlugin = require('react-tap-event-plugin');
 import HTML5Backend from 'react-dnd-html5-backend';
 import {DragDropContext} from 'react-dnd';
@@ -42,7 +44,9 @@ export default class App extends React.Component {
   render() {
     return (
       <AltContainer stores={{
-        UserStore: UserStore
+        UserStore: UserStore,
+        ParsonsStore: ParsonsStore,
+        AssignmentsStore: AssignmentsStore
       }}>
         
         {this.props.children}

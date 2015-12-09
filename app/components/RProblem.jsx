@@ -5,9 +5,7 @@ import ParsonsActions from 'actions/ParsonsActions';
 import UserActions from 'actions/UserActions';
 import UserStore from 'stores/UserStore';
 import Immutable from 'immutable';
-import CodeLine from './CodeLine.jsx';
-import Grid from './Grid.jsx';
-import GridSpace from './GridSpace.jsx';
+import Container from './Container.jsx';
 
 export default class RProblem extends React.Component {
 
@@ -39,13 +37,19 @@ export default class RProblem extends React.Component {
   }
 
   render() {
+
+    if(!this.state.randomProblem) {
+      return null;
+    }
+
     let singleProblem = [];
     let correctArray = [];
     let randomArray = [];
+    let poopoo = [1, 2, 3, 4];
     let gridSize = 0;
     let source = this.state.source;
    // console.log(source);
-    if(this.state.singleProblem.length !== 0) {
+    if(this.state.randomProblem.length !== 0) {
       singleProblem = this.state.singleProblem.problem;
       correctArray = singleProblem;//correctArray = this.state.correctProblem.problem;
       randomArray = this.state.randomProblem;
@@ -55,6 +59,8 @@ export default class RProblem extends React.Component {
     //console.log("Original Problem " + singleProblem);
     //console.log("Correct problem array " + correctArray);
     //console.log("Random Problem array " + randomArray);
+    console.log("randomArray: " + randomArray);
+    console.log(poopoo);
     return (
       <div>
       <div className ="container-fluid">
@@ -75,7 +81,8 @@ export default class RProblem extends React.Component {
                         </ol>
                         <div>
                         Where random problem should be should be : {this.props.params.id}
-                        <Grid gridSize = {gridSize} id = {1} correctArray = {singleProblem} randomArray ={randomArray}/>
+                        <Container array = {randomArray}/>
+                        
                         </div>
                     </div>
                 </div>

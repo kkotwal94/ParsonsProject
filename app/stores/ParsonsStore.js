@@ -40,6 +40,8 @@ import alt from 'altInstance';
     return arr2;
  }
 
+
+
 class ParsonsStore {
 
   /*
@@ -54,6 +56,7 @@ class ParsonsStore {
     this.allProblems = [];
     this.singleProblem = [];
     this.randomProblem = [];
+    this.randomProblem2 = [];
     this.source = 7;
     // Do not think we need an Immutable object here
 
@@ -83,8 +86,9 @@ class ParsonsStore {
     if (!Immutable.Map.isMap(this.allParsons)) {
       this.allParsons = Immutable.fromJS(this.allParsons);
     }
-      this.parsons = [];
-      this.allProblems = [];
+      this.parsons = this.ParsonsActions;
+      this.allProblems = this.allProblems;
+      this.randomProblem = this.randomProblem;
 
   
   }
@@ -119,8 +123,12 @@ class ParsonsStore {
 
   handleGetParsonsProblemSuccess(data) {
     this.singleProblem = data;
-    this.randomProblem = _shuffle(this.singleProblem.problem);
-
+    //console.log(this.singleProblem);
+    for(let i = 0; i < this.singleProblem.problem.length; i++) {
+      this.randomProblem.push({id: i, text: this.singleProblem.problem[i]});
+    }
+    this.randomProblem = _shuffle(this.randomProblem);
+    //console.log(this.randomProblem);
     this.emitChange();
   }
 
