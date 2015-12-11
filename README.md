@@ -2,7 +2,7 @@
 A web app that allows students to practice Parson's problems
 
 #CurrentBugs:
-* Req.user, cannot be establish or mantained after logging in with passportjs even though it should be. 
+* Req.user, cannot be establish or mantained after logging in with passportjs even though it should be. [FIXED]
 
 #Just Implemented/Done:
 
@@ -60,7 +60,7 @@ I got login and signup working, also I set up the initial routing to /dashboard 
 The front end is written in es6 javascript (Javascript 2015) and reactjs
 
 
-#Currently Working On
+#COMPLETED
 
 Set up the mongoose Models for our MongoDB (Feedback, ParsonsProblem, UserProblemPair) like we did in lab, added it into a test case under login, so every login it will create a new object for these models (with different ids ofcourse) with the same properties. It generated in the database for me the query to search these in the DB would be 
 
@@ -71,7 +71,7 @@ Set up the mongoose Models for our MongoDB (Feedback, ParsonsProblem, UserProble
 
 Test worked fine, ids were cool for objects, just double check our schema for these models incase we missed anything, models are under /models, controllers under /controllers, the test is written in controllers/users.js, and in the login api.
 
-#TODO
+#COMPLETED
 
 Api to write for ParsonsProblem
 * GET ParsonsProblem (indiviual Parsons Problem by id)
